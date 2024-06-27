@@ -1,0 +1,101 @@
+.Servicios{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #754a36;
+}
+
+.A{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: white;
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.img2{
+    width: 100%;
+}
+
+.B {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    font-family: Helvetica;
+
+}
+
+.B h2{
+    color: white;
+    font-weight: normal;
+}
+
+.B p{
+    color: white;
+    font-weight: normal;
+
+}
+
+.n{
+    color: #C5AB9F;
+    font-family: garamond;
+}
+
+.Usuarios{
+    font-family: Helvetica;
+    display: flex;
+    flex-direction: column;
+    background-color: #efe7dd;
+    padding: 2rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container h1 {
+    color: #704C3E;
+    font-size: 40px;
+
+  }
+  
+  .container p {
+    color: #704C3E;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+.nuestros-usuarios{
+    flex: 1;
+
+}
+
+.user-cards{
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.card{
+    background-color: #754b35;
+    text-align: center;
+    width: 26%;
+    height:auto;
+    letter-spacing: 4px; 
+}
+
+.card p {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+.img3{
+    width: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,99 @@
+.Portada{
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.portada{
+    background-size: cover;
+    height: 100vh; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.portada_texto{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 6rem;
+    margin-top: 22rem;
+    color: white;
+}
+
+.esperanza{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #efe7dd;
+    
+
+}
+.ImagenInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 1rem;
+   
+}
+
+.EsperanzaAnimal{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: #a48777;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.Esperanza_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Logoprincp1{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.Logoprincp2{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.logo{
+    width: 90%;
+    height: 150px;
+}
+
+.Esperanza_texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.EsperanzaAnimal .buton{
+
+    color: #b3846e;
+    background-color: #d8a68f;
+}
+
+.EsperanzaAnimal .buton:hover {
+    background-color: #EFE7DD; 
+    transition: 0.7s;
+  }
+  
+
+
+
+
