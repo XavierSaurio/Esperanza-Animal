@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3050
 
-const login= [
+const users= [
     {
       "id": "1ca5",
       "nombre": "Diego ",
@@ -44,6 +44,10 @@ app.get('/',(req, res)=>{
     })
 })
 
+app.get('/usuarios', function (req, res) {
+  res.json(users);
+})
+
 app.listen(port, ()=>{
-    console.log('La aplicacion esta en linea')
+    console.log('La aplicacion esta en linea en el puerto', port)
 })
