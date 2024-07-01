@@ -44,19 +44,6 @@ app.get('/',(req, res)=>{
     })
 })
 
-<<<<<<< HEAD
-=======
-
-app.get('/',(req,res)=>{
-    res.json(login)
-})
-
-
-
-
-console.log("hola muchachos");
-
->>>>>>> fa889d99c04ee01be58a6eb2f7899e621e788075
 app.listen(port, ()=>{
     console.log('La aplicacion esta en linea')
 })
