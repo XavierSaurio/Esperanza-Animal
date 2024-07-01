@@ -8,14 +8,6 @@ app.get('/',(req, res)=>{
     })
 })
 
-
-
-
-
-
-
-
-
 app.listen(port, ()=>{
     console.log('La aplicacion esta en linea')
 })
