@@ -10,10 +10,10 @@ import Header from './Componentes/Header';
 import NavBar from './Componentes/NavBar';
 import RegistroForm from './Componentes/RegistroForm';
 import AyudaForm from './Componentes/AyudaForm';
-import HeaderEspacio from './Componentes/HeaderEspacio'
+// import HeaderEspacio from './Componentes/HeaderEspacio'
 import EditarInformacion from './Componentes/EditarInformacion'
 import RegistrarMascota from './Componentes/RegistrarMascota'
-import NavBarRegistro from './Componentes/NavBarRegistro';
+// import NavBarRegistro from './Componentes/NavBarRegistro';
 import InterfazUser from './Componentes/InterfazUser';
 import TuEspacio from './Componentes/TuEspacio';
 
@@ -74,30 +74,18 @@ function App() {
             </div>
           } />
           <Route path="/espacio" element={
-            <div className="container">
-              <HeaderEspacio />
-              <NavBarRegistro />
-              <main>
-                <TuEspacio></TuEspacio>
-              </main>
+            <div>
+              <TuEspacio></TuEspacio>
             </div>
           } />
           <Route path="/espacio/agregar" element={
-            <div className="container">
-              <HeaderEspacio />
-              <NavBarRegistro />
-              <main>
-                <RegistrarMascota />
-              </main>
+            <div>
+              <RegistrarMascota></RegistrarMascota>
             </div>
           } />
           <Route path="/espacio/editar" element={
-            <div className="container">
-              <HeaderEspacio />
-              <NavBarRegistro />
-              <main>
-                <EditarInformacion />
-              </main>
+            <div>
+              <EditarInformacion></EditarInformacion>
             </div>
           } />
         </Routes>
