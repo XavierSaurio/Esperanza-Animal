@@ -1,0 +1,189 @@
+body {
+    font-family: serif, sans-serif;
+  }
+  
+  .contenedorRegistro {
+    width: 80%;
+    margin: 0 auto;
+    color: #aa6644;
+  }
+  
+  main {
+    margin-top: 20px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .usuario{
+    font-size: 16px;
+  }
+  header p{
+    letter-spacing: 1.5px;
+  }
+  
+  header h1 {
+    text-align: center;
+    flex-grow: 1;
+    color: #774d38;
+    letter-spacing: 4px;
+  }
+  .esperanzaImg{
+    width: 53px;
+  }
+  .presentacionImg{
+    width: 70%;
+    justify-content: center;
+    margin-left: 15%;
+  }
+
+  .icon {
+    width:30px; 
+    height:30px;
+    margin-right: 10px; 
+  }
+  
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nav-button {
+    background-color:#efe7dd;
+    padding: 13px 55px ;
+    cursor: pointer;
+    color:#774d38;
+    letter-spacing: 1.5px;
+    font-size: 16px;
+    text-align: center; /* Centra el texto horizontalmente */
+    display: inline-block; /* Asegura que el botón se comporte correctamente */
+    width: auto; /* Ajusta el ancho del botón automáticamente */
+    white-space: nowrap;
+  }
+  
+  .nav-button.active {
+    background-color: #764b36;
+    color: white;
+    
+  }
+  
+  nav .nav-button:not(.active):hover {
+    background-color: #8B4513;
+    color: white;
+  }
+  .form-datosMascota {
+    background-color: #F5F5DC;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: 2px solid black;
+  }
+  
+  h2{
+    letter-spacing: 2px;
+  }
+  .form-datosMascota h3 {
+    font-size: 13px;
+    margin-top: 0;
+    
+  }
+  .form-contenedorRegistro {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los contenedores se envuelvan en múltiples filas */
+    gap: 20px;
+  }
+  
+  .form-group-contenedorRegistro {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column;     
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .form-group1{
+    display: flex;
+    flex-direction: row;
+  }
+  .Direccion{
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 10px;
+  }
+  .form-group1 select{
+    width: 90px;
+  }
+
+  .Mascota{
+    height: 50px;
+  }
+  .form-group label {
+    margin-bottom: 2px;
+  } 
+  .small-select {
+    
+    padding: 2px;    /* Ajusta el relleno interno */
+    width: 110px;    /* Ajusta el ancho del select */
+    height: 30px;    /* Ajusta la altura del select */
+  } 
+  .form-group input,
+  .form-group select {
+    padding: 8px;
+    border: 1px solid #D2B48C;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  .estado{
+    height: 70px; 
+   
+  }
+  .seleccionarFoto {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-photo-button {
+    width: 100px;
+    height: 100px;
+    background-color: #764b36;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 80px;
+    
+  }
+  
+  .submit-button {
+    background-color: #D2B48C;
+    justify-content: center;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 110px;
+    margin-left: 30%;
+  }
+  
+  .submit-button:hover {
+    background-color: #764b36;
+    color: white;
+  }
+  
+  .iconoAñadir {
+    font-size: 18px;
+    
+  }
+  

@@ -1,6 +1,8 @@
 // InterfazUsuario.jsx
-import React from "react";
-
+import React, { useState } from 'react';
+import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg'; 
+import imagen from '../Imagenes/icono2.jpg';
+import imgPresentacion from '../Imagenes/Img4.png';
 import imgMascota1 from '../assets/img-mascota-1.webp'; 
 import imgMascota2 from '../assets/img-mascota-2.webp'; 
 import imgMascota3 from '../assets/img-mascota-3.webp'; 
@@ -23,79 +25,105 @@ function InterfazUser() {
     const handleVisualizar = () => {
         navigate('/animales/visualizar');
     };
-
+    const [active, setActive] = useState('Mascotas en Abandono');
     return (
-        <div className="container">
-            <div className="cajaB">
-                <h2 className="FiltroInput" >Filtro de busqueda</h2>
+        <div >
+          <div>
+            <header>
+              <div className="user-section">
+                <p><IconoSVG className="icon" />Usuario</p>
+              </div>
+              <h1>
+                ESPERANZA ANIMAL 
+                <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
+              </h1>
+            </header>
+                  <nav>
+            {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', 'Home'].map((item) => (
+              <button
+                key={item}
+                className={`nav-button ${active === item ? 'active' : ''}`}
+                onClick={() => setActive(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+            <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
+          </div>
+          <main>
+            <div className="container">
+              <div className="cajaB">
+                <h2 className="FiltroInput">Filtro de busqueda</h2>
                 <div className="FiltroBusqueda">
-                    <div className="FB">
-                        <h4 className="Filtrar">Filtrar Busqueda</h4>
-                    </div>
-                    <select className="Select">
-                        <option>Seleccione Provincia</option>
-                    </select>
-                    <select className="Select">
-                        <option>Seleccione Cantón</option>
-                    </select>
-                    <select className="Select">
-                        <option>Seleccione Parroquia</option>
-                    </select>
-                    <button className="BotonBusqueda"><img src={lupa} alt="lupa" className="Lupa" /></button>
+                  <div className="FB">
+                    <h4 className="Filtrar">Filtrar Busqueda</h4>
+                  </div>
+                  <select className="Select">
+                    <option>Seleccione Provincia</option>
+                  </select>
+                  <select className="Select">
+                    <option>Seleccione Cantón</option>
+                  </select>
+                  <select className="Select">
+                    <option>Seleccione Parroquia</option>
+                  </select>
+                  <button className="BotonBusqueda"><img src={lupa} alt="lupa" className="Lupa" /></button>
                 </div>
                 <div className="AnimalesNecesitados">
-                    <h2 className="NecesitamosAyuda">Necesitamos tu ayuda</h2>
-                    <div className="Animales">
-                        <div className="Animal">
-                            <img src={imgMascota1} alt="Mascota 1" className="ImagenMascota" />
-                            <div className="InfoMascota">
-                                <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                                <h3>Situación: <strong className="grave">Grave</strong></h3>
-                                <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
-                                <h3>Sexo: Macho</h3>
-                            </div>
-                        </div>
-                        <div className="Animal">
-                            <img src={imgMascota2} alt="Mascota 1" className="ImagenMascota" />
-                            <div className="InfoMascota">
-                                <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" /></h2>
-                                <h3>Situación: <strong className="grave">Grave</strong></h3>
-                                <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
-                                <h3>Sexo: Macho</h3>
-                            </div>
-                        </div>
-                        <div className="Animal">
-                            <img src={imgMascota3} alt="Mascota 1" className="ImagenMascota" />
-                            <div className="InfoMascota">
-                                <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" /></h2>
-                                <h3>Situación: <strong className="grave">Grave</strong></h3>
-                                <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
-                                <h3>Sexo: Macho</h3>
-                            </div>
-                        </div>
-                        <div className="Animal">
-                            <img src={imgMascota4} alt="Mascota 1" className="ImagenMascota" />
-                            <div className="InfoMascota">
-                                <h1 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" /></h1>
-                                <h3>Situación: <strong className="grave">Grave</strong></h3>
-                                <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
-                                <h3>Sexo: Macho</h3>
-                            </div>
-                        </div>
-                        <div className="Animal">
-                            <div className="InfoMascota">
-                                <div className="Mas">
-                                <a ><img style={{ cursor: 'pointer' }} src={mas} alt="Mascota 1" className="mas" onClick={handleReportar}/></a>
-
-                                </div>
-                                <h2 className="informacion">Reportar Animal en Abandono </h2>
-                            </div>
-                        </div>
+                  <h2 className="NecesitamosAyuda">Necesitamos tu ayuda</h2>
+                  <div className="Animales">
+                    <div className="Animal">
+                      <img src={imgMascota1} alt="Mascota 1" className="ImagenMascota" />
+                      <div className="InfoMascota">
+                        <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
+                        <h3>Situación: <strong className="grave">Grave</strong></h3>
+                        <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
+                        <h3>Sexo: Macho</h3>
+                      </div>
                     </div>
+                    <div className="Animal">
+                      <img src={imgMascota2} alt="Mascota 1" className="ImagenMascota" />
+                      <div className="InfoMascota">
+                        <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
+                        <h3>Situación: <strong className="grave">Grave</strong></h3>
+                        <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
+                        <h3>Sexo: Macho</h3>
+                      </div>
+                    </div>
+                    <div className="Animal">
+                      <img src={imgMascota3} alt="Mascota 1" className="ImagenMascota" />
+                      <div className="InfoMascota">
+                        <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
+                        <h3>Situación: <strong className="grave">Grave</strong></h3>
+                        <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
+                        <h3>Sexo: Macho</h3>
+                      </div>
+                    </div>
+                    <div className="Animal">
+                      <img src={imgMascota4} alt="Mascota 1" className="ImagenMascota" />
+                      <div className="InfoMascota">
+                        <h2 className="informacion">Ver Informacion <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
+                        <h3>Situación: <strong className="grave">Grave</strong></h3>
+                        <h3>Ubicación: Pichincha, Quito, Tumbaco</h3>
+                        <h3>Sexo: Macho</h3>
+                      </div>
+                    </div>
+                    <div className="Animal">
+                      <div className="InfoMascota">
+                        <div className="Mas">
+                          <a><img style={{ cursor: 'pointer' }} src={mas} alt="Mascota 1" className="mas" onClick={handleReportar} /></a>
+                        </div>
+                        <h2 className="informacion">Reportar Animal en Abandono </h2>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </main>
         </div>
-    );
+      );
 }
 
 export default InterfazUser;
