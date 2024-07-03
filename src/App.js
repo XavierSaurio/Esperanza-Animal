@@ -46,31 +46,19 @@ function App() {
           } />
           <Route path="/animales" element={
 
-            <div className="container">
-              <Header />
-              <NavBar />
-              <main>
-                <InterfazUser />
-              </main>
+            <div>
+                <InterfazUser /> 
             </div>
 
           } />
           <Route path="/animales/reportar" element={
-            <div className="container">
-              <Header />
-              <NavBar />
-              <main>
+            <div>
                 <RegistroForm />
-              </main>
             </div>
           } />
           <Route path="/animales/visualizar" element={
-            <div className="container">
-              <Header />
-              <NavBar />
-              <main>
+            <div>
                 <AyudaForm />
-              </main>
             </div>
           } />
           <Route path="/espacio" element={

@@ -1,9 +1,9 @@
-import React from 'react';
-//import './RegistroForm.css';
-import '../Estilos/StyleUI4.css'
-import '../Estilos/StyleInformacion.css'
-import '../Estilos/StyleRegistrar.css'
+import React, { useState } from 'react';
+import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
+import imagen from '../Imagenes/icono2.jpg';
+import imgPresentacion from '../Imagenes/Img4.png';
 import { useNavigate } from 'react-router-dom';
+import '../Estilos/StyleUI3.css';
 
 const RegistroForm = () => {
 
@@ -12,39 +12,61 @@ const RegistroForm = () => {
   const handleAñadir= ()=> {
     navigate('/animales');
   }
+  const [active, setActive] = useState('Mascotas en Abandono');
 
+  return (
+    <div className="contenedorRegistro">
+      <header>
+        <div className="usuario">
+          <p><IconoSVG className="icon" />Usuario</p>
+        </div>
+        <h1>ESPERANZA ANIMAL 
+          <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal"/>
+        </h1>
+      </header>
+      <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
 
-    
-    return (
-        <div className='containerT'>
-            <h2>Datos de la mascota en Abandono</h2>
-            <section className="form-section">
+      <nav>
+        {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', 'Home'].map((item) => (
+          <button
+            key={item}
+            className={`nav-button ${active === item ? 'active' : ''}`}
+            onClick={() => setActive(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </nav>
+
+      <main>
+        <h2>Datos de la mascota en Abandono</h2>
+        <section className="form-datosMascota">
           <form>
-            <div className="form-container">
+            <div className="form-contenedorRegistro">
               {/* Contenedor 1 */}
-              <div className="form-group-container">
+              <div className="form-group-contenedorRegistro">
                 <div className="form-group">
-                <h3>Registre la Dirección de la mascota en Abandóno</h3>
-                    <div className='form-group1'>
-                      <div>
+                  <h3>Registre la Dirección de la mascota en Abandóno</h3>
+                  <div className='form-group1'>
+                    <div>
                       <label className='Direccion'>Provincia</label>
-                        <select>
-                            <option>Pichincha</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className='Direccion'>Cantón</label>
-                          <select>
-                            <option>Quito</option>
-                          </select>
-                      </div>
-                      <div>
-                        <label className='Direccion'>Parroquia</label>
-                          <select>
-                            <option>Tumbaco</option>
-                          </select>
-                      </div>
+                      <select>
+                        <option>Pichincha</option>
+                      </select>
                     </div>
+                    <div>
+                      <label className='Direccion'>Cantón</label>
+                      <select>
+                        <option>Quito</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className='Direccion'>Parroquia</label>
+                      <select>
+                        <option>Tumbaco</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>         
                 <div className="form-group">
                   <label>Seleccione su tipo de Mascota</label>
@@ -60,7 +82,7 @@ const RegistroForm = () => {
                 </div>
               </div>
               {/* Contenedor 2 */}
-              <div className="form-group-container">
+              <div className="form-group-contenedorRegistro">
                 <div className="form-group">
                   <label>Seleccione el Sexo de su Mascota</label>
                   <select className='Mascota'>
@@ -77,7 +99,7 @@ const RegistroForm = () => {
                 </div>
               </div>
               {/* Contenedor 3 */}
-              <div className="form-group-container">
+              <div className="form-group-contenedorRegistro">
                 <div className="form-group">
                   <label>Estado de la Mascota (Salud)</label>
                   <input type="text" placeholder="Es una mascota..." className="estado"/>
@@ -88,8 +110,8 @@ const RegistroForm = () => {
                 </div>
               </div>
               {/* Contenedor 4 */}
-              <div className="form-group-container">
-                <div className="form-group photo-section">
+              <div className="form-group-contenedorRegistro">
+                <div className="form-group seleccionarFoto">
                   <label>Agregar Fotografía</label>
                   <button className="add-photo-button">+</button>
                 </div>
@@ -99,14 +121,14 @@ const RegistroForm = () => {
                     <option>Grave</option>
                   </select>
                 </div>
-                <button onClick={handleAñadir} type="submit" className="submit-button">Añadir <span className="check-icon">✔</span></button>
+                <button type="submit" className="submit-button">Añadir <span className="iconoAñadir">✔</span></button>
               </div>
             </div>
           </form>
         </section>
-        </div>
-        
-      );
-    };
+      </main>
+    </div>
+  );
+};
 
 export default RegistroForm;

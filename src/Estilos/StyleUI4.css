@@ -1,207 +1,201 @@
 body {
-    font-family: serif, sans-serif;
-  }
-  
-  .container {
-    width: 80%;
-    margin: 0 auto;
-    color: #aa6644;
-  }
-  
-  main {
-    margin-top: 20px;
-  }
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-  }
-  
-  .user-section{
-    font-size: 16px;
-  }
-  header p{
-    letter-spacing: 1.5px;
-  }
-  
-  header h1 {
-    text-align: center;
-    flex-grow: 1;
-    color: #774d38;
-    letter-spacing: 4px;
-  }
-  .esperanzaImg{
-    width: 53px;
-  }
-  .presentacionImg{
-    width: 70%;
-    justify-content: center;
-    margin-left: 15%;
-  }
-
-  .icon {
-    width:30px; 
-    height:30px;
-    margin-right: 10px; 
-  }
-  
-
-  nav {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .nav-button {
-    background-color:#efe7dd;
-    padding: 13px 55px ;
-    cursor: pointer;
-    color:#774d38;
-    letter-spacing: 1.5px;
-    font-size: 16px;
-    text-align: center; /* Centra el texto horizontalmente */
-    display: inline-block; /* Asegura que el botón se comporte correctamente */
-    width: auto; /* Ajusta el ancho del botón automáticamente */
-    white-space: nowrap;
-  }
-  
-  .nav-button.active {
-    background-color: #764b36;
-    color: white;
-    
-  }
-  
-  nav .nav-button:not(.active):hover {
-    background-color: #8B4513;
-    color: white;
-  }
-  .header{
-    display: inline-block;
-    vertical-align: middle;
-    flex-direction: column;
-    letter-spacing: 2px;
-  }
-  .situacion-container {
-    display: inline-block;
-    float: right;
-    margin-top: 38px;
-    vertical-align: middle;
-    border: 2px solid #000;
-    
-}
-  .situacionMascota{
-    margin-right: 5px;
-  }
-  .form-section {
-    background-color: #F5F5DC;
-    padding: 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    border: 2px solid black;
-  }
-  
-  
-  .form-section h3 {
-    font-size: 13px;
-    margin-top: 0;
-    
-  }
-  .form-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los contenedores se envuelvan en múltiples filas */
-    gap: 20px;
-  }
-  
-  .form-group-container {
-    flex: 1; 
-    display: flex; 
-    flex-direction: column;     
-    gap: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .form-group1{
-    display: flex;
-    flex-direction: row;
-  }
-  .Direccion{
-    display: flex;
-    flex-direction: column-reverse;
-    margin: 10px;
-  }
-  .form-group1 select{
-    width: 90px;
-  }
-
-  .Mascota{
-    height: 50px;
-  }
-  .form-group label {
-    margin-bottom: 2px;
-  } 
-  .small-select {
-    
-    padding: 2px;    /* Ajusta el relleno interno */
-    width: 110px;    /* Ajusta el ancho del select */
-    height: 30px;    /* Ajusta la altura del select */
-  } 
-  .form-group input,
-  .form-group select {
-    padding: 8px;
-    border: 1px solid #D2B48C;
-    border-radius: 4px;
-    font-size: 11px;
-  }
-  .estado{
-    height: 70px; 
-  }
-  .ayudaAnimal{
-      width: 200px; /* Ajusta este valor al ancho deseado */
-      height: auto; /* Mantiene la proporción original */  
-  }
-  .photo-section {
-    display: flex;
-    align-items: center;
-  }
-  .buttons-container {
-    display: flex;
-    gap: 20px;
+  font-family: serif, sans-serif;
 }
 
-.custom-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FADCD9; /* color de fondo del botón */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.container {
+  width: 80%;
+  margin: 0 auto;
+  color: #aa6644;
 }
 
-.custom-button:hover {
-    background-color: #FBC4C0; /* color de fondo al pasar el cursor */
+main {
+  margin-top: 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
 }
 
-.button-icon {
-    width: 30px; /* ajusta el tamaño de la imagen según sea necesario */
-    height: 30px;
-    margin-bottom: 5px; /* espacio entre la imagen y el texto */
+.iconoUsuario{
+  font-size: 16px;
+}
+header p{
+  letter-spacing: 1.5px;
 }
 
-.custom-button span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #000; /* color del texto */
+header h1 {
+  text-align: center;
+  flex-grow: 1;
+  color: #774d38;
+  letter-spacing: 4px;
+}
+.esperanzaImg{
+  width: 53px;
+}
+.presentacionImg{
+  width: 70%;
+  justify-content: center;
+  margin-left: 15%;
 }
 
+.icon {
+  width:30px; 
+  height:30px;
+  margin-right: 10px; 
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-button {
+  background-color:#efe7dd;
+  padding: 13px 55px ;
+  cursor: pointer;
+  color:#774d38;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  text-align: center; /* Centra el texto horizontalmente */
+  display: inline-block; /* Asegura que el botón se comporte correctamente */
+  width: auto; /* Ajusta el ancho del botón automáticamente */
+  white-space: nowrap;
+}
+
+.nav-button.active {
+  background-color: #764b36;
+  color: white;
   
+}
 
+nav .nav-button:not(.active):hover {
+  background-color: #8B4513;
+  color: white;
+}
+.header{
+  display: inline-block;
+  vertical-align: middle;
+  flex-direction: column;
+  letter-spacing: 2px;
+}
+.situacion-container {
+  display: inline-block;
+  float: right;
+  margin-top: -35px;
+  vertical-align: middle;
+  border: 2px solid #000;
   
+}
+.situacionMascota{
+  margin-right: 10px;
+}
+.formInformacionAnimal {
+  background-color: #F5F5DC;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: 2px solid black;
+}
 
+
+.formInformacionAnimal h3 {
+  font-size: 13px;
+  margin-top: 0;
   
+}
+.contenedorPrincipal {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los contenedores se envuelvan en múltiples filas */
+  gap: 20px;
+}
+
+.contenedoresInformacion {
+  flex: 1; 
+  display: flex; 
+  flex-direction: column;     
+  gap: 20px;
+}
+
+.direccionMascota {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.direccionMascota1{
+  display: flex;
+  flex-direction: row;
+}
+.Direccion{
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 10px;
+}
+.direccionMascota1 select{
+  width: 90px;
+}
+
+.Mascota{
+  height: 50px;
+}
+.direccionMascota label {
+  margin-bottom: 2px;
+} 
+.opcionesMascota {
+  
+  padding: 2px;    /* Ajusta el relleno interno */
+  width: 110px;    /* Ajusta el ancho del select */
+  height: 30px;    /* Ajusta la altura del select */
+} 
+.direccionMascota input,
+.direccionMascota select {
+  padding: 8px;
+  border: 1px solid #D2B48C;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.estado{
+  height: 70px; 
+}
+.ayudaAnimal{
+    width: 200px; /* Ajusta este valor al ancho deseado */
+    height: auto; /* Mantiene la proporción original */  
+}
+.photo-section {
+  display: flex;
+  align-items: center;
+}
+.buttons-container {
+  display: flex;
+  gap: 20px;
+}
+
+.botonesAyuda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FADCD9; /* color de fondo del botón */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botonesAyuda:hover {
+  background-color: #FBC4C0; /* color de fondo al pasar el cursor */
+}
+
+.iconoBoton {
+  width: 30px; /* ajusta el tamaño de la imagen según sea necesario */
+  height: 30px;
+  margin-bottom: 5px; /* espacio entre la imagen y el texto */
+}
+
+.botonesAyuda span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000; /* color del texto */
+}
