@@ -1,3 +1,13 @@
+.Container {
+  background-color: #F0E7E0;
+ 
+  display: flex; /* Esto permite que las cajas se coloquen una al lado de la otra si es necesario */
+  flex-direction: column; /* Usa 'row' si deseas que las cajas estén una al lado de la otra */
+  margin: 0; /* Sin márgenes */
+  padding: 0; /* Sin padding */
+  height: 100%;
+  width: 100%;
+}
 body {
     font-family: serif, sans-serif;
   }
