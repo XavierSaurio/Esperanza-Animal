@@ -11,6 +11,9 @@ body {
   main {
     margin-top: 20px;
   }
+  .datosMascota{
+    margin-left: -120px;
+  }
   header {
     display: flex;
     justify-content: space-between;
@@ -18,8 +21,9 @@ body {
     padding: 10px 0;
   }
   
-  .usuario{
-    font-size: 16px;
+  .usuario p{
+    font-size: 30px;
+    margin-left: -120px;
   }
   header p{
     letter-spacing: 1.5px;
@@ -47,9 +51,10 @@ body {
   }
   
 
-  nav {
+  .NavReportar {
     display: flex;
     justify-content: space-around;
+    margin-left: -150px;
   }
   
   .nav-button {
@@ -81,10 +86,13 @@ body {
     border-radius: 8px;
     font-size: 16px;
     border: 2px solid black;
+    margin-left: -120px;
+    margin-right: -120px;
   }
   
   h2{
     letter-spacing: 2px;
+    margin-left: -120px;
   }
   .form-datosMascota h3 {
     font-size: 13px;
@@ -151,8 +159,8 @@ body {
   }
   
   .add-photo-button {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     background-color: #764b36;
     border-radius: 50%;
     font-size: 24px;

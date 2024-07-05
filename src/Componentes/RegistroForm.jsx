@@ -24,10 +24,8 @@ const RegistroForm = () => {
           <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal"/>
         </h1>
       </header>
-      <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
-
-      <nav>
-        {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', 'Home'].map((item) => (
+      <nav className='NavReportar'>
+        {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal','', 'Home'].map((item) => (
           <button
             key={item}
             className={`nav-button ${active === item ? 'active' : ''}`}
@@ -37,16 +35,20 @@ const RegistroForm = () => {
           </button>
         ))}
       </nav>
+      <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
 
       <main>
-        <h2>Datos de la mascota en Abandono</h2>
+        <h2 className='datosMascota'>Datos de la mascota en Abandono</h2>
         <section className="form-datosMascota">
           <form>
             <div className="form-contenedorRegistro">
               {/* Contenedor 1 */}
               <div className="form-group-contenedorRegistro">
                 <div className="form-group">
-                  <h3>Registre la Dirección de la mascota en Abandóno</h3>
+                  <h3>Ingrese el nombre en caso de ser un animal encontrado y tenga un nombre, caso contrario no llenar este campo</h3>
+                  <label className='nombre_Animal_Encontrado'></label>
+                  <input type="text" placeholder="Max" className='Mascota' />
+                  <label>Registre la Dirección del animal en Abandono</label>
                   <div className='form-group1'>
                     <div>
                       <label className='Direccion'>Provincia</label>
@@ -69,13 +71,13 @@ const RegistroForm = () => {
                   </div>
                 </div>         
                 <div className="form-group">
-                  <label>Seleccione su tipo de Mascota</label>
+                  <label>Seleccione la especie del animal</label>
                   <select className="small-select">
                     <option>Gato</option>
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Seleccione la Raza de su Mascota</label>
+                  <label>Seleccione la Raza del animal</label>
                   <select className="small-select">
                     <option>Indeterminada</option>
                   </select>
@@ -84,28 +86,28 @@ const RegistroForm = () => {
               {/* Contenedor 2 */}
               <div className="form-group-contenedorRegistro">
                 <div className="form-group">
-                  <label>Seleccione el Sexo de su Mascota</label>
+                  <label>Seleccione el Sexo del animal</label>
                   <select className='Mascota'>
                     <option>Macho</option>
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Ingrese el Color de su Mascota</label>
+                  <label>Ingrese el Color del animal</label>
                   <input type="text" placeholder="Negro" className='Mascota' />
                 </div>
                 <div className="form-group">
-                  <label>Ingrese el Tamaño de su mascota</label>
+                  <label>Ingrese el Tamaño del animal</label>
                   <input type="text" placeholder="1.25 m" className='Mascota' />
                 </div>
               </div>
               {/* Contenedor 3 */}
               <div className="form-group-contenedorRegistro">
                 <div className="form-group">
-                  <label>Estado de la Mascota (Salud)</label>
+                  <label>Describa el estado de salud del animal</label>
                   <input type="text" placeholder="Es una mascota..." className="estado"/>
                 </div>
                 <div className="form-group">
-                  <label>Describa Rasgos Distintivos de su Mascota</label>
+                  <label>Describa Rasgos Distintivos del animal</label>
                   <input type="text" placeholder="Manchas blancas..." className="estado"/>
                 </div>
               </div>
@@ -121,7 +123,7 @@ const RegistroForm = () => {
                     <option>Grave</option>
                   </select>
                 </div>
-                <button type="submit" className="submit-button">Añadir <span className="iconoAñadir">✔</span></button>
+                <button type="submit" className="submit-button" onClick={handleAñadir}>Añadir <span className="iconoAñadir">✔</span></button>
               </div>
             </div>
           </form>

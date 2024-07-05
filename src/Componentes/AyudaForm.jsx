@@ -24,14 +24,12 @@ const AyudaForm = () => {
         <div className="iconoUsuario">
           <p><IconoSVG className="icon" />Usuario</p>
         </div>
-        <h1>ESPERANZA ANIMAL 
+        <h1 >ESPERANZA ANIMAL 
           <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal"/>
         </h1>
       </header>
-      <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
-
-      <nav>
-        {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', 'Home'].map((item) => (
+      <nav className='navAyuda'>
+        {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal','', 'Home'].map((item) => (
           <button
             key={item}
             className={`nav-button ${active === item ? 'active' : ''}`}
@@ -41,7 +39,7 @@ const AyudaForm = () => {
           </button>
         ))}
       </nav>
-
+      <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
       <main>
         <h2>Datos de la mascota a la cual Brindar Ayuda</h2>
         <div className="situacion-container">
@@ -56,7 +54,7 @@ const AyudaForm = () => {
               {/* Contenedor 1 */}
               <div className="contenedoresInformacion">
                 <div className="direccionMascota">
-                  <h3>Registre la Dirección de la mascota en Abandóno</h3>
+                  <h3>Dirección de animal</h3>
                   <div className='direccionMascota1'>
                     <div>
                       <label className='Direccion'>Provincia</label>
@@ -79,44 +77,16 @@ const AyudaForm = () => {
                   </div>
                 </div>         
                 <div className="direccionMascota">
-                  <label>Seleccione su tipo de Mascota</label>
+                  <label>Especie de animal</label>
                   <select className="opcionesMascota">
                     <option>Gato</option>
                   </select>
                 </div>
                 <div className="direccionMascota">
-                  <label>Seleccione la Raza de su Mascota</label>
+                  <label>Raza de animal</label>
                   <select className="opcionesMascota">
                     <option>Indeterminada</option>
                   </select>
-                </div>
-              </div>
-              {/* Contenedor 2 */}
-              <div className="contenedoresInformacion">
-                <div className="direccionMascota">
-                  <label>Seleccione el Sexo de su Mascota</label>
-                  <select className='Mascota'>
-                    <option>Macho</option>
-                  </select>
-                </div>
-                <div className="direccionMascota">
-                  <label>Ingrese el Color de su Mascota</label>
-                  <input type="text" placeholder="Negro" className='Mascota' />
-                </div>
-                <div className="direccionMascota">
-                  <label>Ingrese el Tamaño de su mascota</label>
-                  <input type="text" placeholder="1.25 m" className='Mascota' />
-                </div>
-              </div>
-              {/* Contenedor 3 */}
-              <div className="contenedoresInformacion">
-                <div className="direccionMascota">
-                  <label>Estado de la Mascota (Salud)</label>
-                  <input type="text" placeholder="Es una mascota..." className="estado"/>
-                </div>
-                <div className="direccionMascota">
-                  <label>Describa Rasgos Distintivos de su Mascota</label>
-                  <input type="text" placeholder="Manchas blancas..." className="estado"/>
                 </div>
               </div>
               {/* Contenedor 4 */}
@@ -136,6 +106,35 @@ const AyudaForm = () => {
                   </button>
                 </div>
               </div>
+              {/* Contenedor 2 */}
+              <div className="contenedoresInformacion">
+                <div className="direccionMascota">
+                  <label>Sexo del animal</label>
+                  <select className='Mascota'>
+                    <option>Macho</option>
+                  </select>
+                </div>
+                <div className="direccionMascota">
+                  <label>Color del animal</label>
+                  <input type="text" placeholder="Negro" className='Mascota' />
+                </div>
+                <div className="direccionMascota">
+                  <label>Ingrese el Tamaño del animal</label>
+                  <input type="text" placeholder="1.25 m" className='Mascota' />
+                </div>
+              </div>
+              {/* Contenedor 3 */}
+              <div className="contenedoresInformacion">
+                <div className="direccionMascota">
+                  <label>Descripción estado de salud del animal</label>
+                  <input type="text" placeholder="Es una mascota..." className="estado"/>
+                </div>
+                <div className="direccionMascota">
+                  <label>Descripción Rasgos Distintivos del animal</label>
+                  <input type="text" placeholder="Manchas blancas..." className="estado"/>
+                </div>
+              </div>
+              
             </div>
           </form>
         </section>

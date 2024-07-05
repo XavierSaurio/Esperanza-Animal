@@ -1,11 +1,11 @@
 body {
     font-family: serif, sans-serif;
+    background-color: #F0E7E0;
   }  
   main {
     margin-top: 20px;
   }
 .container {
-    background-color: #F0E7E0;
     display: flex; /* Esto permite que las cajas se coloquen una al lado de la otra si es necesario */
     flex-direction: column; /* Usa 'row' si deseas que las cajas estén una al lado de la otra */
     margin: 0; /* Sin márgenes */
@@ -18,9 +18,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 0;
   }
-  
   .usuario{
     font-size: 16px;
   }
@@ -48,18 +47,16 @@ header {
     width:30px; 
     height:30px;
     margin-right: 10px; 
+    
   }
-  
-
   nav {
     display: flex;
     justify-content: space-around;
-    
   }
   
   .nav-button {
     background-color:#efe7dd;
-    padding: 13px 90px ;
+    padding: 10px 75px ;
     cursor: pointer;
     color:#774d38;
     letter-spacing: 1.5px;
@@ -80,7 +77,90 @@ header {
     background-color: #8B4513;
     color: white;
   }
+  /*BRINDAR AYUDA*/
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5ece4; /* Ajusta el color según sea necesario */
+
+    border-bottom: 2px solid #d1b7a1; /* Ajusta el color según sea necesario */
+  }
   
+  .contenedor-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #7c5231; /* Ajusta el color según sea necesario */
+    margin-right: -110px;
+    margin-top: 60px;
+    margin-bottom: -95px;
+    margin-left: 40px;
+    letter-spacing: 1.5px;
+  }
+  
+  .icono-manos {
+    width: 15%;
+  }
+  
+  .contenedor-botones {
+    display: flex;
+    align-items: center;
+  }
+  
+  .boton {
+    font-size: 17px;
+    font-family: serif, sans-serif;
+    background-color: #f7c5a0; /* Ajusta el color según sea necesario */
+    border: 2px solid black; /* Ajusta el color según sea necesario */
+    color: #7c5231; /* Ajusta el color según sea necesario */
+    padding: 15px 40px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .boton:hover {
+    background-color: #f5a882; /* Ajusta el color según sea necesario */
+  }
+  
+  .desplegable {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .boton-desplegable {
+    background-color: #ffffff; /* Ajusta el color según sea necesario */
+    color: black;
+}
+  
+  .contenido-desplegable {
+    display: none;
+    position: absolute;
+    background-color: #ffffff; /* Ajusta el color según sea necesario */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .desplegable:hover .contenido-desplegable {
+    display: block;
+  }
+  
+  .contenido-desplegable a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .contenido-desplegable a:hover {
+    background-color: #f1f1f1;
+  }
 .cajaA, .cajaB {
     margin: 0; /* Sin márgenes */
     padding: 0; /* Sin padding */
@@ -177,14 +257,15 @@ header {
 }
 .FiltroBusqueda {
     display: flex;
-    width: 75%;
+    width: 78%;
     background-color: #F0E7E0;
     border: 1px solid black;
     box-sizing: border-box;
     margin-left: 5%;
     color: white;
-    font-weight: normal;
     gap: 0;
+    letter-spacing: 1.3px;
+    font-size: 16px;
 
 }
 .FB, .Select, .BotonBusqueda {
@@ -237,11 +318,52 @@ header {
 
 
 }
-.NecesitamosAyuda{
-    text-align: start;
-    margin-left: 5%;
-    font-weight: no;
-}
+  /*ETIQUETA DE SITUACION*/ 
+  .EtiquetaSituacion_Perdida {
+    position: absolute;
+    top: 703px;
+    left: 38px;
+    background-color: #f5c542; /* Ajusta el color según sea necesario */
+    color: #000; /* Ajusta el color según sea necesario */
+    padding: 5px 10px;
+    font-weight: bold;
+  }
+  .EtiquetaSituacion_Abandono {
+    position: absolute;
+    top: 703px;
+    left: 327px;
+    background-color: #764b36; /* Ajusta el color según sea necesario */
+    color: white; /* Ajusta el color según sea necesario */
+    padding: 5px 10px;
+    font-weight: bold;
+  }
+  .EtiquetaSituacion_Perdida1 {
+    position: absolute;
+    top: 703px;
+    left: 616px;
+    background-color: #f5c542; /* Ajusta el color según sea necesario */
+    color: #000; /* Ajusta el color según sea necesario */
+    padding: 5px 10px;
+    font-weight: bold;
+  }
+  .EtiquetaSituacion_Abandono1 {
+    position: absolute;
+    top: 703px;
+    left: 905px;
+    background-color: #764b36; /* Ajusta el color según sea necesario */
+    color: white; /* Ajusta el color según sea necesario */
+    padding: 5px 10px;
+    font-weight: bold;
+  }
+  .EtiquetaSituacion_Perdida2 {
+    position: absolute;
+    top: 703px;
+    left: 1194px;
+    background-color: #f5c542; /* Ajusta el color según sea necesario */
+    color: #000; /* Ajusta el color según sea necesario */
+    padding: 5px 10px;
+    font-weight: bold;
+  }
 .Animales{
     display: flex;
     justify-content: center;
@@ -285,8 +407,8 @@ header {
 .ImagenMascota {
     width: 50%;
     height: 50%;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 35px;
+    margin-bottom: 5px;
 }
   
   .InfoMascota span {
@@ -309,15 +431,19 @@ header {
     width: 145px;
     height: 145%;
 }
-.informacion {
+.informacion1 {
     font-weight: normal;
     /* font-size: 1rem; Ajusta el tamaño del texto según sea necesario */
     /* margin-top: 10px; Añade un margen superior para separar la imagen del texto */
     /* text-align: center; Centra el texto */
     color: #543426;
     font-size: 20px;
-    padding: 10% 0% 0% 10%;
+    padding: 0% 0% 0% 40%;
     text-align: center;
+}
+h3{
+    color: black;
+    font-size: 16px;
 }
 .NecesitamosAyuda{
     color: #543426;

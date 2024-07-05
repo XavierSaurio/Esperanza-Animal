@@ -11,15 +11,10 @@
 body {
   font-family: serif, sans-serif;
 }
-
 .container {
   width: 80%;
   margin: 0 auto;
   color: #aa6644;
-}
-
-main {
-  margin-top: 20px;
 }
 header {
   display: flex;
@@ -28,8 +23,8 @@ header {
   padding: 10px 0;
 }
 
-.iconoUsuario{
-  font-size: 16px;
+.iconoUsuario p{
+  font-size: 30px;
 }
 header p{
   letter-spacing: 1.5px;
@@ -37,9 +32,10 @@ header p{
 
 header h1 {
   text-align: center;
-  flex-grow: 1;
+  flex-grow: 5;
   color: #774d38;
-  letter-spacing: 4px;
+  letter-spacing: 8px;
+  
 }
 .esperanzaImg{
   width: 53px;
@@ -55,11 +51,14 @@ header h1 {
   height:30px;
   margin-right: 10px; 
 }
+main h2{
+  font-size: 30px;
+  margin-left: 15px;
+}
 
-
-nav {
+.navAyuda {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around;  
 }
 
 .nav-button {
@@ -106,11 +105,11 @@ nav .nav-button:not(.active):hover {
   background-color: #F5F5DC;
   padding: 20px;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 17px;
   border: 2px solid black;
+  margin-right: 15px;
+  margin-left: 15px;
 }
-
-
 .formInformacionAnimal h3 {
   font-size: 13px;
   margin-top: 0;
@@ -127,6 +126,9 @@ nav .nav-button:not(.active):hover {
   display: flex; 
   flex-direction: column;     
   gap: 20px;
+}
+.ayudaAnimal{
+  font-size: 30px;
 }
 
 .direccionMascota {
