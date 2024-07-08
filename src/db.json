@@ -34,5 +34,29 @@
     }
   ],
   "mascota": [
+    {
+      "id": "0173",
+      "nombre": "perriyo",
+      "tipo": "Perro",
+      "raza": "",
+      "sexo": "Hembra",
+      "color": "blanco",
+      "tamaño": "1",
+      "personalidad": "es bonito",
+      "rasgosDistintivos": "manchas en la cabeza",
+      "fotoMascota": ""
+    },
+    {
+      "id": "ce09",
+      "nombre": "perriyo",
+      "tipo": "Perro",
+      "raza": "",
+      "sexo": "Hembra",
+      "color": "blanco",
+      "tamaño": "1",
+      "personalidad": "es bonito",
+      "rasgosDistintivos": "manchas en la cabeza",
+      "fotoMascota": ""
+    }
   ]
 }

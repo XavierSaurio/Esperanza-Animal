@@ -91,7 +91,6 @@ const handleSubmit = async (e) => {
   }
 };
 const handleAñadir = () => {
-  handleChange();
   navigate(`/espacio/${id}`);
 }
 
