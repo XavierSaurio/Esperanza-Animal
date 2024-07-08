@@ -45,7 +45,8 @@ useEffect(() => {
     const comparar = () => {
         listaLogs.forEach((log) => {
             if (log.password === capturarContraseña && log.email === capturarCorreo) {
-                navigate('/login/menu');
+                navigate(`/login/menu/${log.id}`);
+                // navigate('/login/menu');
                 encontrado=true;
             } 
             

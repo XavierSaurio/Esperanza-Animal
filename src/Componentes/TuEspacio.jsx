@@ -11,8 +11,9 @@ import mas from '../assets/icono-mas.png'
 import logo from '../assets/logo.webp'
 import { useNavigate } from "react-router-dom";
 // import '../Estilos/InterfazUser.css'
-import { colors } from "@mui/material";
 import axios from "axios";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 ///
 import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
 import imagen from '../Imagenes/icono2.jpg';
@@ -24,12 +25,11 @@ import imgPr from '../Imagenes/espacio.png'
 
 
 function TuEspacio() {
-
+    
     const navigate = useNavigate();
-    const url = "http://localhost:5000/mascota/";
 
     const handleReportar = () => {
-        navigate('/espacio/agregar');
+        navigate(`/espacio/agregar/${id}`);
     };
     const handleVisualizar = () => {
         navigate('/espacio/editar');
@@ -43,19 +43,53 @@ function TuEspacio() {
             setActive(item);
         }
     };
+    
+    const { id } = useParams();
+    const [nombre, setNombre] = useState('');
+
+    useEffect(() => {
+        // Fetch the name associated with the id from the server
+        const fetchName = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/login/${id}`);
+                setNombre(response.data.nombre);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchName();
+    }, [id]);
+    
+    const [imagenId, setImagenId] = useState('');
+
+    useEffect(() => {
+        // Fetch the image associated with the id from the server
+        const fetchImage = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/login/${id}`);
+                setImagenId(response.data.fotoPerfil);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchImage();
+    }, [id]);
 
     return (
         <div className="Container">
             <header>
                 <div className="user-section">
-                    <p><IconoSVG className="icon" />Usuario</p>
+                    <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={imagenId} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+                        {nombre}
+                    </p>
                 </div>
                 <h1>ESPERANZA ANIMAL
                     <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
                 </h1>
             </header>
             <hr />
-            {/* g */}
+           
             <div>
                 <nav>
                     {['Tus Mascotas', 'Registrar Mascota', 'Editar Información', 'Home'].map((item) => (

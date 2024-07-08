@@ -6,28 +6,51 @@ import menu3 from '../Imagenes/menu-opcion-3.webp'
 import logo from '../Imagenes/logo.webp'
 import usuario from '../Imagenes/icono_usuario.png'
 import cerrar from '../Imagenes/icono_cerrar_sesion.png'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import db from '../db.json';
 
 function Menu() {
 
   const navigate = useNavigate();
 
     const handleTuEspacio = () => {
-        navigate('/espacio');
+      navigate(`/espacio/${id}`);
     };
+    // const handleTuEspacio = () => {
+    //     navigate('/espacio');
+    // };
 
     const handleAnimales = () => {
         navigate('/animales');
     };
+
+    // ...
+
+    const { id } = useParams();
+    const persona = db.login.find((p) => p.id === id);
+
+    // ...
+
+    // recuperar la imagen
+    const getBase64Image = () => {
+      if (persona && persona.fotoPerfil) {
+        return `${persona.fotoPerfil}`;
+      }
+      return null;
+    };
+    const dataURL = getBase64Image();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div>
         <Container maxWidth={true} sx={{ width: '100vw', background: 'radial-gradient(#be9f8d, #dfbba8, #ebddd1)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid>
-            <div >
-              <img style={{ width: '6%' }} src={usuario} alt="usuario" /> Usuario
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img style={{ borderRadius: '50%', width: '40px', height: '40px' }} src={dataURL} alt="imagen" />
+              <Typography sx={{ color: '#754a36', marginLeft: '0.5rem' }}>
+                {persona.nombre}
+              </Typography>
+          </div>
             <Typography
               sx={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
               <h1 style={{ color: '#754a36', textAlign: 'center' }}>Esperanza Animal</h1>

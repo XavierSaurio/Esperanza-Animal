@@ -25,10 +25,9 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/login/menu" element={
-            <div>
-              <Menu />
-            </div>} />
+            <Route path="/login/menu/:id" element={ 
+              <div> <Menu /> </div> } 
+            />
           <Route path="/login" element={
             <div>
               <Login />
@@ -61,12 +60,12 @@ function App() {
                 <AyudaForm />
             </div>
           } />
-          <Route path="/espacio" element={
+          <Route path="/espacio/:id" element={
             <div>
               <TuEspacio></TuEspacio>
             </div>
           } />
-          <Route path="/espacio/agregar" element={
+          <Route path="/espacio/agregar/:id" element={
             <div>
               <RegistrarMascota></RegistrarMascota>
             </div>

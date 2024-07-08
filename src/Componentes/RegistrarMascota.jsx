@@ -9,14 +9,32 @@ import '../Estilos/StyleInformacion.css'
 import '../Estilos/StyleRegistrar.css'
 import logo from '../Imagenes/logo.webp'
 import imgPr from '../Imagenes/espacio.png'
+import axios from "axios";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+
 
 function RegistrarMascota() {
-
+  const { id } = useParams();
+  const [nombre, setNombre] = useState('');
   const navigate = useNavigate();
 
   const handleAñadir = () => {
     navigate('/espacio');
   }
+  useEffect(() => {
+    // Fetch the name associated with the id from the server
+    const fetchName = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/login/${id}`);
+            setNombre(response.data.nombre);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    fetchName();
+}, [id]);
 
   // navbar
   const [active, setActive] = useState('Registar Mascota');
@@ -28,11 +46,30 @@ function RegistrarMascota() {
       }
   };
 
+  //capturar imagen 
+  const [imagenId, setImagenId] = useState('');
+
+    useEffect(() => {
+        // Fetch the image associated with the id from the server
+        const fetchImage = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/login/${id}`);
+                setImagenId(response.data.fotoPerfil);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchImage();
+    }, [id]);
+
   return (
     <div className="Container">
       <header>
         <div className="user-section">
-          <p><IconoSVG className="icon" />Usuario</p>
+        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={imagenId} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+            {nombre}
+        </p>
         </div>
         <h1>ESPERANZA ANIMAL
           <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
