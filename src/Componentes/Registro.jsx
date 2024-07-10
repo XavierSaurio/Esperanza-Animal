@@ -202,7 +202,7 @@ function Registro(props) {
                                     }));
                                     };
                                 }}
-                                />
+                            />
                         </Button>
                         <Button
                             type="submit"

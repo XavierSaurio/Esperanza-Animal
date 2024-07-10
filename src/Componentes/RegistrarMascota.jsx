@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 ///
-import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
-import imagen from '../Imagenes/icono2.jpg';
 import '../Estilos/StyleUI4.css'
 import '../Estilos/StyleInformacion.css'
 import '../Estilos/StyleRegistrar.css'
@@ -12,8 +10,7 @@ import imgPr from '../Imagenes/espacio.png'
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-
+import perroperfil from '../Imagenes/perro_perfil.webp'
 
 function RegistrarMascota() {
   const { id } = useParams();
@@ -70,8 +67,9 @@ function RegistrarMascota() {
       tamaño: '',
       personalidad: '',
       rasgosDistintivos: '',
+      id_duenio: id,
       fotoMascota:''
-    });
+      });
 
     const handleChange = (e) => {
       setDatosMascota({
@@ -85,17 +83,31 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     await axios.post("http://localhost:5000/mascota", datosMascota);
+    navigate(`/espacio/${id}`);
     console.log("Data sent successfully!");
   } catch (error) {
     console.error(error);
+
   }
 };
-const handleAñadir = () => {
-  navigate(`/espacio/${id}`);
-}
+
+
+
+// Mostrar la foto de perfil o la foto ingresada
+const mostrarFoto = () => {
+  if (datosMascota.fotoMascota=="") {
+    <br></br>
+    return <img src={perroperfil} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
+
+  } else {
+    <br></br>
+    return <img src={datosMascota.fotoMascota} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
+  }
+};
+
 
   return (
-    <div className="Container" onSubmit={handleSubmit}>
+    <div className="Container" onSubmit={handleChange}>
       <header>
         <div className="user-section">
         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -197,9 +209,31 @@ const handleAñadir = () => {
                                 color: "white"
                             }}
                             onClick={handleChange}>Agregar Fotografía</label>
-                  <button className="add-photo-button">+</button>
+                            <br />
+                            <br />
+                            {mostrarFoto()}
+                            <br />
+                            <br />
+                           
+                            <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                            const file = e.target.files[0];
+                            const reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onloadend = function () {
+                              const base64data = reader.result;
+                              setDatosMascota((prevMascota)=> ({
+                                ...prevMascota,
+                                fotoMascota: base64data
+                              }));
+                            };
+                            }}
+                            />
+
                 </div>
-                <button onClick={handleAñadir} type="submit" className="submit-button">Añadir <span className="check-icon">✔</span></button>              </div>
+                <button onClick={handleSubmit} type="submit" className="submit-button">Añadir <span className="check-icon">✔</span></button>              </div>
             </div>
           </form>
         </section>

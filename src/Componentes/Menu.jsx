@@ -14,6 +14,7 @@ function Menu() {
   const navigate = useNavigate();
 
     const handleTuEspacio = () => {
+      
       navigate(`/espacio/${id}`);
     };
     // const handleTuEspacio = () => {

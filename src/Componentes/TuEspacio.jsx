@@ -3,9 +3,6 @@ import imgMascota1 from '../Imagenes/img-mascota-1.webp';
 import imgMascota2 from '../Imagenes/img-mascota-2.webp';
 import imgMascota3 from '../Imagenes/img-mascota-3.webp';
 import imgMascota4 from '../Imagenes/img-mascota-4.webp';
-import animalesR from '../assets/animalesR.jpg'
-import user from '../assets/icono-usuario.svg'
-import lupa from '../assets/icono-lupa.svg'
 import editar from '../assets/ico-editar.svg'
 import mas from '../assets/icono-mas.png'
 import logo from '../assets/logo.webp'
@@ -15,8 +12,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 ///
-import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
-import imagen from '../Imagenes/icono2.jpg';
 import '../Estilos/StyleUI4.css'
 import '../Estilos/StyleInformacion.css'
 import '../Estilos/StyleRegistrar.css'
@@ -74,6 +69,28 @@ function TuEspacio() {
         };
         fetchImage();
     }, [id]);
+
+
+    //---------------------------------
+    //Capturar los datos de la mascota 
+    const [mascotas, setMascotas] = useState([]);
+
+    useEffect(() => {
+        const fetchMascotas = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/mascotas');
+                setMascotas(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchMascotas();
+    }, []);
+    // filtrar solo las mascotas de mi usuario
+    const filteredMascotas = mascotas.filter((mascota) => mascota.id_duenio === id);
+    
+    
+
 
     return (
         <div className="Container">
@@ -159,9 +176,23 @@ function TuEspacio() {
                     </div>
                 </div>
             </div>
+           
+        {/* {mascotas.map((mascota) => (
+            <div className="Animal" key={mascota.id}>
+                <img src={mascota.imagen} alt={mascota.nombre} className="ImagenMascota" />
+                <div className="InfoMascota">
+                    <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
+                    <h3>{mascota.nombre}</h3>
+                    <span style={{ color: 'black' }}>Sexo: {mascota.sexo}</span>
+                    <span style={{ color: 'black' }}>Color: {mascota.color}</span>
+                    <span style={{ color: 'black' }}>Altura: {mascota.altura}</span>
+                </div>
+            </div>
+        ))} */}
+
+
+
         </div>
-
-
     );
 }
 
