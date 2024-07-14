@@ -200,3 +200,14 @@ body {
     height: auto; /* Mantiene la proporción original */  
     margin-left: 40px;
 }
+.mascota-container {
+  width: 20%; /* Esto hace que el contenedor ocupe una quinta parte del ancho de la página */
+  float: left; /* Esto hace que los contenedores se alineen en fila */
+  border: solid black 1px;
+}
+
+  .final {
+    width: 20%; /* Esto hace que el contenedor ocupe una quinta parte del ancho de la página */
+    float: right; /* Esto hace que el contenedor se alinee a la derecha */
+    border: solid black 1px;
+  }

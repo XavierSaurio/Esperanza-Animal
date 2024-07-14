@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import imgMascota1 from '../Imagenes/img-mascota-1.webp';
-import imgMascota2 from '../Imagenes/img-mascota-2.webp';
-import imgMascota3 from '../Imagenes/img-mascota-3.webp';
-import imgMascota4 from '../Imagenes/img-mascota-4.webp';
 import editar from '../assets/ico-editar.svg'
 import mas from '../assets/icono-mas.png'
 import logo from '../assets/logo.webp'
@@ -76,19 +72,17 @@ function TuEspacio() {
     const [mascotas, setMascotas] = useState([]);
 
     useEffect(() => {
-        const fetchMascotas = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/mascotas');
-                setMascotas(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchMascotas();
+        axios.get('http://localhost:5000/mascota')
+        .then(response=>{
+            console.log(response.data);
+            setMascotas(response.data);
+        }).catch(err=>{
+            console.log(err);
+        })
     }, []);
     // filtrar solo las mascotas de mi usuario
     const filteredMascotas = mascotas.filter((mascota) => mascota.id_duenio === id);
-    
+    console.log(mascotas)
     
 
 
@@ -123,75 +117,38 @@ function TuEspacio() {
 
             </div>
 
-            {/* g */}
+            
             <div className="Animales">
-                <div className="Animal">
-                    <img src={imgMascota1} alt="Mascota 1" className="ImagenMascota" />
-                    <div className="InfoMascota">
-                        <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                        <h3>Poncho</h3>
-                        <span style={{ color: 'black' }}>Sexo: Macho</span>
-                        <span style={{ color: 'black' }}>Color: Marron</span>
-                        <span style={{ color: 'black' }}>Altura: 2 años</span>
-                    </div>
+              
+            {filteredMascotas.map((mascota) => (
+            <div key={mascota.id} className="mascota-container">
+                <div className="InfoMascota">
+                <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
+                <div className="InfoMascota">
+                    <h2 className="informacion">
+                    <img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} />
+                    </h2>
+                    <h3>{mascota.nombre}</h3>
+                    <span style={{ color: 'black' }}>Sexo: {mascota.sexo}</span>
+                    <span style={{ color: 'black' }}>Color: {mascota.color}</span>
+                    <span style={{ color: 'black' }}>Altura: {mascota.altura}</span>
                 </div>
-                <div className="Animal">
-                    <img src={imgMascota2} alt="Mascota 1" className="ImagenMascota" />
-                    <div className="InfoMascota">
-                        <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                        <h3>Colon</h3>
-                        <span style={{ color: 'black' }}>Sexo: Hembra</span>
-                        <span style={{ color: 'black' }}>Color: Gris</span>
-                        <span style={{ color: 'black' }}>Altura: 0.60 m</span>
-                    </div>
                 </div>
-                <div className="Animal">
-                    <img src={imgMascota3} alt="Mascota 1" className="ImagenMascota" />
-                    <div className="InfoMascota">
-                        <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                        <h3>Goofy</h3>
-                        <span style={{ color: 'black' }}>Sexo: Macho</span>
-                        <span style={{ color: 'black' }}>Color: Blanco</span>
-                        <span style={{ color: 'black' }}>Altura: 1 m</span>
+            </div>
+))}
 
-                    </div>
-                </div>
-                <div className="Animal">
-                    <img src={imgMascota4} alt="Mascota 1" className="ImagenMascota" />
-                    <div className="InfoMascota">
-                        <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                        <h3>Nala</h3>
-                        <span style={{ color: 'black' }}>Sexo: Hembra</span>
-                        <span style={{ color: 'black' }}>Color: Marrón</span>
-                        <span style={{ color: 'black' }}>Altura: 0.80 m</span>
-                    </div>
-                </div>
-                <div className="Animal">
+                <div className="Final">
                     <div className="InfoMascota">
                         <div className="Mas">
                             <a ><img style={{ cursor: 'pointer' }} onClick={handleReportar} src={mas} alt="Mascota 1" className="mas" /></a>
-
                         </div>
                         <h2 className="informacion">Agregar Mascota </h2>
                     </div>
                 </div>
             </div>
            
-        {/* {mascotas.map((mascota) => (
-            <div className="Animal" key={mascota.id}>
-                <img src={mascota.imagen} alt={mascota.nombre} className="ImagenMascota" />
-                <div className="InfoMascota">
-                    <h2 className="informacion"><img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} /></h2>
-                    <h3>{mascota.nombre}</h3>
-                    <span style={{ color: 'black' }}>Sexo: {mascota.sexo}</span>
-                    <span style={{ color: 'black' }}>Color: {mascota.color}</span>
-                    <span style={{ color: 'black' }}>Altura: {mascota.altura}</span>
-                </div>
-            </div>
-        ))} */}
-
-
-
+        
+           
         </div>
     );
 }
