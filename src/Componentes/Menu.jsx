@@ -22,7 +22,7 @@ function Menu() {
     // };
 
     const handleAnimales = () => {
-        navigate('/animales');
+        navigate(`/animales/${id}`);
     };
 
     // ...
