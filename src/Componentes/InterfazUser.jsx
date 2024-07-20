@@ -27,6 +27,9 @@ function InterfazUser() {
   const [active, setActive] = useState('Registrar Mascota');
   const [nombre, setNombre] = useState('');
   const [imagenId, setImagenId] = useState('');
+  const [mascotaPerdida, setMascotaPerdida] = useState(null); // Estado para la mascota seleccionada
+  const [celularDuenio, setCelularDuenio] = useState(''); // Estado para el celular del dueño
+  const [showAvistamientoModal, setShowAvistamientoModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +37,7 @@ function InterfazUser() {
         const response = await axios.get(`http://localhost:5000/login/${id}`);
         setNombre(response.data.nombre);
         setImagenId(response.data.fotoPerfil);
+        setCelularDuenio(response.data.celular); // Guardar el celular del dueño
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -65,12 +69,20 @@ function InterfazUser() {
     setModalIsOpen(true);
   };
 
-  const handleVisualizar = () => {
-    navigate(`/animales/visualizar/${id}`);
+  const handleVisualizar = (mascota) => {
+    // navigate(`/animales/visualizar/${id}`);
+    setMascotaPerdida(mascota);
+    setShowModal(true);
   };
 
   const handleSubmit = async () => {
     try {
+      const selected = mascotas.find(mascota => mascota.id === selectedMascota);
+      if (selected && selected.estado === 'perdida') {
+        alert('Esta mascota ya está reportada como perdida.');
+        return;
+      }
+
       const nuevaAlerta = {
         mascotaId: selectedMascota,
         provincia,
@@ -79,8 +91,17 @@ function InterfazUser() {
         descripcion,
         estado: 'perdida'
       };
-
+      // Guardar la alerta en la tabla 'registro'
       await axios.post('http://localhost:5000/registro', nuevaAlerta);
+
+      // Actualizar el estado de la mascota a 'perdida'
+      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, {
+        estado: 'perdida',
+        alerta: nuevaAlerta
+      });
+
+      // await axios.post('http://localhost:5000/registro', nuevaAlerta);
+      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, nuevaAlerta);
 
       const updatedMascotas = mascotas.map(mascota => {
         if (mascota.id === selectedMascota) {
@@ -169,7 +190,7 @@ function InterfazUser() {
                     <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
                     <div className="MascotaInfo">
                       <h2 className="informacion1">
-                        Informar <img src={ojo} alt="ojo" className="Ojo" onClick={handleVisualizar} />
+                        Informar <img src={ojo} alt="ojo" className="Ojo" onClick={() => handleVisualizar(mascota)} />
                       </h2>
                       <h3>Nombre: <strong className="nombre">{mascota.nombre}</strong></h3>
                       {mascota.estado === 'perdida' && mascota.alerta && (
@@ -216,6 +237,32 @@ function InterfazUser() {
             </label>
             <button type="submit">Publicar Alerta</button>
           </form>
+        </Modal>
+        <Modal isOpen={showModal} onRequestClose={() => setShowModal(false)} className="modal">
+          {mascotaPerdida && (
+            <div>
+              <h2>{mascotaPerdida.nombre}</h2>
+              <img src={mascotaPerdida.fotoMascota} alt={mascotaPerdida.nombre} className="Animal" />
+              <p>Raza: {mascotaPerdida.raza}</p>
+              <p>Sexo: {mascotaPerdida.sexo}</p>
+              <p>Color: {mascotaPerdida.color}</p>
+              <p>Tamaño: {mascotaPerdida.tamaño}</p>
+              <p>Personalidad: {mascotaPerdida.personalidad}</p>
+              <p>Rasgos distintivos: {mascotaPerdida.rasgosDistintivos}</p>
+              {mascotaPerdida.alerta && (
+                <>
+                  <p>Ubicación: {mascotaPerdida.alerta.provincia}, {mascotaPerdida.alerta.canton}, {mascotaPerdida.alerta.parroquia}</p>
+                  <p>Descripción del lugar: {mascotaPerdida.alerta.descripcion}</p>
+                  <button onClick={() => setShowAvistamientoModal(true)}>Comunicar Avistamiento</button>
+                </>
+              )}
+            </div>
+          )}
+        </Modal>
+        <Modal isOpen={showAvistamientoModal} onRequestClose={() => setShowAvistamientoModal(false)} className="modal-avistamiento">
+          <h2>Favor comunicarse al siguiente número:</h2>
+          <p>{celularDuenio}</p>
+          <button onClick={() => setShowAvistamientoModal(false)}>Cerrar</button>
         </Modal>
       </main>
     </div>
