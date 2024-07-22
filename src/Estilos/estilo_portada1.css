@@ -29,6 +29,7 @@
     align-items: center;
     background-color: #efe7dd;
     
+    
 
 }
 .ImagenInicio{
@@ -49,6 +50,7 @@
     align-items: center;
     justify-content: center;
     margin: 2rem;
+    
 }
 
 .Esperanza_logo{
@@ -61,18 +63,21 @@
 .Logoprincp1{
     display: flex;
     flex-direction: row;
+    margin-top: 3rem;
+    align-items: center;
     flex: 1;
 }
 
 .Logoprincp2{
     display: flex;
     flex-direction: row;
-    flex: 1;
+    margin-bottom: 6rem;
+    flex: 2;
 }
 
 .logo{
-    width: 90%;
-    height: 150px;
+    width: 100%;
+    height: 140px;
 }
 
 .Esperanza_texto{

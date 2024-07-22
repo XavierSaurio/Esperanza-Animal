@@ -25,9 +25,9 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-            <Route path="/login/menu/:id" element={ 
-              <div> <Menu /> </div> } 
-            />
+          <Route path="/login/menu/:id" element={
+            <div> <Menu /> </div>}
+          />
           <Route path="/login" element={
             <div>
               <Login />
@@ -43,21 +43,23 @@ function App() {
               <Portada3 />
             </div>
           } />
-          <Route path="/animales" element={
+          <Route path="/animales/:id" element={
 
             <div>
-                <InterfazUser /> 
+              <InterfazUser></InterfazUser>
             </div>
 
           } />
           <Route path="/animales/reportar" element={
             <div>
-                <RegistroForm />
+              <RegistroForm />
             </div>
           } />
+          <Route path="/animales/visualizar/:id" element={<InterfazUser />} />
+
           <Route path="/animales/visualizar" element={
             <div>
-                <AyudaForm />
+              <AyudaForm />
             </div>
           } />
           <Route path="/espacio/:id" element={
