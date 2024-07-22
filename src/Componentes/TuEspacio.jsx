@@ -22,9 +22,17 @@ function TuEspacio() {
     const handleReportar = () => {
         navigate(`/espacio/agregar/${id}`);
     };
-    const handleVisualizar = () => {
-        navigate('/espacio/editar');
+    const handleVisualizar = (id_mascota) => {
+            navigate(`/espacio/editar/${id}/${id_mascota}`);
     };
+
+    
+
+
+    // const handleVisualizar = () => {
+    //     navigate(`/espacio/editar/${id}`);
+    // };
+
     // navbar
     const [active, setActive] = useState('Registar Mascota');
     const handleClick = (item) => {
@@ -82,7 +90,6 @@ function TuEspacio() {
     }, []);
     // filtrar solo las mascotas de mi usuario
     const filteredMascotas = mascotas.filter((mascota) => mascota.id_duenio === id);
-    console.log(mascotas)
     
 
 
@@ -117,32 +124,40 @@ function TuEspacio() {
 
             </div>
 
-            
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="Animales">
-              
-            {filteredMascotas.map((mascota) => (
-            <div key={mascota.id} className="mascota-container">
-                <div className="InfoMascota">
-                <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
-                <div className="InfoMascota">
-                    <h2 className="informacion">
-                    <img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar} />
-                    </h2>
-                    <h3>{mascota.nombre}</h3>
-                    <span style={{ color: 'black' }}>Sexo: {mascota.sexo}</span>
-                    <span style={{ color: 'black' }}>Color: {mascota.color}</span>
-                    <span style={{ color: 'black' }}>Altura: {mascota.altura}</span>
+                
+                <div className="ScrollContainer">
+                    {filteredMascotas.map((mascota) => (
+                        <div key={mascota.id} className="mascota-container">
+                            <div className="InfoMascota">
+                                <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
+                                <div className="InfoMascota">
+                                    <h2 className="informacion">
+                                        <img src={editar} alt="ojo" className="Ojo" onClick={handleVisualizar(mascota.id)} style={{ cursor: 'pointer' }} />
+                                    </h2>
+                                    <h3>{mascota.nombre}</h3>
+                                    <span style={{ color: 'black' }}>Sexo: {mascota.sexo}</span>
+                                    <span style={{ color: 'black' }}>Color: {mascota.color}</span>
+                                    <span style={{ color: 'black' }}>Altura: {mascota.tamaño}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                </div>
-            </div>
-))}
-
                 <div className="Final">
                     <div className="InfoMascota">
                         <div className="Mas">
-                            <a ><img style={{ cursor: 'pointer' }} onClick={handleReportar} src={mas} alt="Mascota 1" className="mas" /></a>
+                            <img style={{ cursor: 'pointer' }} onClick={handleReportar} src={mas} alt="Mascota 1" className="mas" /> 
                         </div>
-                        <h2 className="informacion">Agregar Mascota </h2>
+                        <div className="Mas">
+                        <h2 >Agregar</h2>
+                        </div>
                     </div>
                 </div>
             </div>

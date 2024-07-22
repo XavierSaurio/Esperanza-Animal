@@ -4,8 +4,11 @@ import '../Estilos/StyleUI4.css'
 import '../Estilos/StyleInformacion.css'
 import '../Estilos/StyleRegistrar.css'
 import { useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import db from '../db.json';
+
+
 ///
-import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
 import imagen from '../Imagenes/icono2.jpg';
 import '../Estilos/StyleUI4.css'
 import '../Estilos/StyleInformacion.css'
@@ -30,11 +33,28 @@ function EditarInformacion() {
     }
   };
 
+  const { id } = useParams();
+    const persona = db.login.find((p) => p.id === id);
+
+    // ...
+
+    // recuperar la imagen
+    const getBase64Image = () => {
+      if (persona && persona.fotoPerfil) {
+        return `${persona.fotoPerfil}`;
+      }
+      return null;
+    };
+    const dataURL = getBase64Image();
+
   return (
     <div className="Container">
       <header>
         <div className="user-section">
-          <p><IconoSVG className="icon" />Usuario</p>
+        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={persona.fotoPerfil} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+                        {persona.nombre}
+                    </p>
         </div>
         <h1>ESPERANZA ANIMAL
           <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />

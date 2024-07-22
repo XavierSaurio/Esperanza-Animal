@@ -390,8 +390,7 @@ header {
     justify-content: flex-start;
     align-items: flex-start;
     text-align: start;
-    font-size: 70%;
-    border-top:  1px solid black; /* Borde negro */
+    padding: 3%;
 
 }
 .grave{
@@ -405,15 +404,16 @@ header {
 
 }
 .ImagenMascota {
-    width: 50%;
-    height: 50%;
-    margin-top: 35px;
-    margin-bottom: 5px;
+    
+    height: 100px;
+    width: auto ;
+    margin: 20px 10px 20px 10px;
 }
   
   .InfoMascota span {
     display: block;
     margin-bottom: 5px;
+
   }
 
 .Mas {
@@ -427,7 +427,6 @@ header {
 .mas {
     background-color: #F0E7E0;
     display: block;
-    margin-top: 28%;
     width: 145px;
     height: 145%;
 }

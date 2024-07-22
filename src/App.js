@@ -70,7 +70,7 @@ function App() {
               <RegistrarMascota></RegistrarMascota>
             </div>
           } />
-          <Route path="/espacio/editar" element={
+          <Route path="/espacio/editar/:id/:id_" element={
             <div>
               <EditarInformacion></EditarInformacion>
             </div>

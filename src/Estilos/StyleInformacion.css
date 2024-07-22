@@ -201,13 +201,33 @@ body {
     margin-left: 40px;
 }
 .mascota-container {
-  width: 20%; /* Esto hace que el contenedor ocupe una quinta parte del ancho de la página */
-  float: left; /* Esto hace que los contenedores se alineen en fila */
+  width: 25%; /* Esto hace que el contenedor ocupe una quinta parte del ancho de la página */
+  /* float: left; Esto hace que los contenedores se alineen en fila */
   border: solid black 1px;
-}
+  display: inline-block;
+justify-content: center;
+align-items: center; /* Centra contenido verticalmente */
+text-align: center; 
+ }
 
   .final {
     width: 20%; /* Esto hace que el contenedor ocupe una quinta parte del ancho de la página */
     float: right; /* Esto hace que el contenedor se alinee a la derecha */
-    border: solid black 1px;
+    border: solid black 2px;
   }
+  .ScrollContainer {
+    overflow-y: auto;
+    white-space: nowrap;
+    height: 400px;
+  }
+
+.Animales {
+  width: 200px;
+  height: 200px;
+}
+.Ojo{
+  justify-content: center;
+align-items: center; /* Centra contenido verticalmente */
+text-align: center;
+float: right;
+}
