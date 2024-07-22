@@ -11,35 +11,33 @@ import login from '../Imagenes/img_mascotas_3.webp'
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import e from "cors";
 
-function Login(props) {
+function Login() {
 
     const navigate = useNavigate();
-
-    const handleSignIn = () => {
-        navigate('/login/menu');
-    };
 
     const handleSignUp = () => {
         navigate('/registrarse');
     };
-//-------------------------------------------------------------------------------------
-const url = "http://localhost:5000/login/";
-const [listaLogs, setlistaLogs] = useState([]);
 
-useEffect(() => {
-    axios.get(url)
-      .then(response => {
-          setlistaLogs(response.data);
-      }).catch(err=>{ 
-          console.log(err);
-      })
+    //----------------------------------USANDO db.json----------------------------------------------
+    /*const url = "http://localhost:5000/login/";
+    const [listaLogs, setlistaLogs] = useState([]);
 
-  }, []);
+    useEffect(() => {
+        axios.get(url)
+            .then(response => {
+                setlistaLogs(response.data);
+            }).catch(err => {
+                console.log(err);
+            })
 
-    
-    const [capturarCorreo, setcapturarCorreo]=useState("");
-    const [capturarContraseña, setcampturarContraseña]=useState("");
+    }, []);
+
+
+    const [capturarCorreo, setcapturarCorreo] = useState("");
+    const [capturarContraseña, setcampturarContraseña] = useState("");
     let encontrado = false;
 
     const comparar = () => {
@@ -47,16 +45,49 @@ useEffect(() => {
             if (log.password === capturarContraseña && log.email === capturarCorreo) {
                 navigate(`/login/menu/${log.id}`);
                 // navigate('/login/menu');
-                encontrado=true;
-            } 
-            
-        });
-        if (encontrado==false) {
-            alert("El correo y/o la contraseña ingresadas no estan asociados a ninguna cuenta");
+                encontrado = true;
             }
-    };
 
-//-------------------------------------------------------------------------------------
+        });
+        if (encontrado == false) {
+            alert("El correo y/o la contraseña ingresadas no estan asociados a ninguna cuenta");
+        }
+    };*/
+
+    //-------------------------------------------------------------------------------------
+    //---------------------------USANDO MYSQL----------------------------------
+    const PETICIONGET = "http://localhost:5000/usuarios";
+    const [listaUsuarios, setlistaUsuarios] = useState([]);
+
+    useEffect(() => {
+        axios.get(PETICIONGET)
+            .then(response => {
+                setlistaUsuarios(response.data);
+            }).catch(err => {
+                console.log(err);
+            })
+
+    }, []);
+
+
+    const [capCorreo, setcapCorreo] = useState("");
+    const [capContraseña, setcapContraseña] = useState("");
+    let found = false;
+
+    const ingresarUsuario = () => {
+        listaUsuarios.forEach((log) => {
+            if (log.password === capContraseña && log.email === capCorreo) {
+                navigate(`/login/menu/${log.id}`);
+                // navigate('/login/menu');
+                found = true;
+            }
+
+        });
+        if (found == false) {
+            alert("El correo y/o la contraseña ingresadas no estan asociados a ninguna cuenta");
+        }
+    };
+    //-------------------------------------------------------------------------
     return (
 
 
@@ -102,9 +133,10 @@ useEffect(() => {
                             label="Ingrese su correo electrónico "
                             name="email"
                             autoComplete="email"
-                            onChange={(e) => setcapturarCorreo(e.target.value)}
+                            //onChange={(e) => setcapturarCorreo(e.target.value)}
+                            onChange = {(e)=> setcapCorreo(e.target.value)}
                             autoFocus
-                            
+
                         />
                         <TextField
                             margin="normal"
@@ -115,8 +147,9 @@ useEffect(() => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            onChange={(e) => setcampturarContraseña(e.target.value)}
-                            />
+                            //onChange={(e) => setcampturarContraseña(e.target.value)}
+                            onChange={(e) => setcapContraseña(e.target.value)}
+                        />
                         <FormControlLabel
                             control={<Checkbox value="remember" />}
                             label="Recordarme"
@@ -129,7 +162,8 @@ useEffect(() => {
                                 mt: 3, mb: 2, backgroundColor: "#754a36",
                                 color: "white"
                             }}
-                            onClick={comparar}
+                            //onClick={comparar}
+                            onClick={ingresarUsuario}
                         >
                             INICIA SESIÓN
                         </Button>
@@ -138,7 +172,7 @@ useEffect(() => {
                                 id="compareButton"
                                 variant="body1"
                                 onClick={handleSignUp}
-                                sx={{ cursor: 'pointer', color: '#754a36', textAlign:'center' }} 
+                                sx={{ cursor: 'pointer', color: '#754a36', textAlign: 'center' }}
                             >
                                 No tienes una Cuenta !!! Regístrate Ahora !!!
                             </Typography>

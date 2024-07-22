@@ -1,7 +1,10 @@
 const User = require('../models/user.model');
 
+
 module.exports.createUser = async (request, response) => {
-    const { nombre, email, password, celular, provincia, canton, parroquia, fotoPerfil } = request.body;
+    const { nombre, email, password, celular, provincia, canton, parroquia} = request.body;
+    //Para guardar una foto
+    const fotoPerfil = request.file ? `/imagenes/${request.file.filename}` : null;
     try {
         const user = await User.create({ nombre, email, password, celular, provincia, canton, parroquia, fotoPerfil });
         response.json(user);

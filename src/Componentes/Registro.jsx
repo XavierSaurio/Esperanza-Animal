@@ -10,8 +10,10 @@ import axios from "axios";
 import registro from '../Imagenes/registro.png';
 import usuario from '../Imagenes/icono_usuario.png';
 
-function Registro(props) {
+function Registro() {
     const navigate = useNavigate();
+    // usando db.json-------------------
+    /*
     const url = "http://localhost:5000/login/";
 
     const [login, setLogin] = useState({
@@ -48,7 +50,91 @@ function Registro(props) {
         } catch (error) {
             console.error('Error en la solicitud:', error);
         }
+    };*/
+
+    //Usando mySQL-----
+    const PETICIONPOST = "http://localhost:5000/usuarios/new"
+    const [login, setLogin] = useState({
+        nombre: "",
+        email: "",
+        password: "",
+        celular: "",
+        provincia: "",
+        canton: "",
+        parroquia: "",
+        fotoPerfil: null
+    });
+
+    //const [fotoPerfil, setfotoPerfil] = useState(null);
+
+    const selectedImage = (e) =>{
+
+        //setfotoPerfil(e.target.files[0])
+        setLogin(prevState => ({
+            ...prevState,
+            fotoPerfil: e.target.files[0]
+        }));
+    }
+
+    /*const sendImage = (e) =>{
+        e.preventDefault();
+        if(!fotoPerfil){
+            alert("No se ha seleccionado una imagen")
+            return
+        }
+
+        const formdata = new FormData()
+        formdata.append("fotoPerfil", fotoPerfil)
+
+        fetch(PETICIONPOST, {
+            method: "POST",
+            body: formdata
+        })
+
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+
+        setfotoPerfil(null)
+
+        
+
+    }*/
+
+    const manejadorInput = (event) => {
+        const { name, value } = event.target;
+        setLogin(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
+
+    const manejadorSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        Object.keys(login).forEach(key => {
+            formData.append(key, login[key]);
+            
+        });
+
+        try {
+            const res = await axios.post(PETICIONPOST, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            if (res.status === 201 || res.status === 200) {
+                console.log('Datos enviados con éxito');
+                navigate('/login');
+            } else {
+                console.error('Error al enviar datos');
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+            console.log(error)
+        } 
+    };
+
 
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
@@ -172,7 +258,7 @@ function Registro(props) {
                             onChange={manejadorInput}
                         >
                             <MenuItem value="Pusuqui">Pusuqui</MenuItem>
-                            <MenuItem value="Pomasqui">Pomasqui</MenuItem>
+                            <MenuItem value="Urbina">Urbina</MenuItem>
                         </TextField>
                         <Button
                             variant="contained"
@@ -190,18 +276,7 @@ function Registro(props) {
                                 type="file"
                                 hidden
                                 accept="image/*"
-                                onChange={(e) => {
-                                    const file = e.target.files[0];
-                                    const reader = new FileReader();
-                                    reader.readAsDataURL(file);
-                                    reader.onloadend = function () {
-                                    const base64data = reader.result;
-                                    setLogin((prevLogin) => ({
-                                        ...prevLogin,
-                                        fotoPerfil: base64data,
-                                    }));
-                                    };
-                                }}
+                                onChange={selectedImage}
                             />
                         </Button>
                         <Button
@@ -209,6 +284,7 @@ function Registro(props) {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2, backgroundColor: "#754a36", color: "white" }}
+                            
                         >
                             REGISTRARSE
                         </Button>
