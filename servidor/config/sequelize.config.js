@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const username = 'root';
-const password = 'diego';
+const password = 'root';
 //Este es el password para mySQL
 const bdd_name = 'esperanzaAnimal';
 const hostName = 'localhost';
