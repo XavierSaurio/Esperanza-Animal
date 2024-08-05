@@ -44,18 +44,32 @@ function InterfazUser() {
     };
     fetchData();
   }, [id]);
+  //inicialmente para animales perdidos
+  // useEffect(() => {
+  //   const fetchMascotas = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:5000/mascota');
+  //       setMascotas(response.data.filter(mascota => mascota.id_duenio === id));
+  //     } catch (error) {
+  //       console.error('Error fetching mascotas:', error);
+  //     }
+  //   };
+  //   fetchMascotas();
+  // }, [id]);
 
   useEffect(() => {
     const fetchMascotas = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/mascota');
-        setMascotas(response.data.filter(mascota => mascota.id_duenio === id));
+        const response = await axios.get('http://localhost:5000/animales');
+        setMascotas(response.data.filter(mascota => mascota.id_duenio === id && mascota.estado === 'abandono'));
       } catch (error) {
         console.error('Error fetching mascotas:', error);
       }
     };
     fetchMascotas();
   }, [id]);
+
+
 
   const handleClick = (item) => {
     if (item === 'Home') {
@@ -95,13 +109,13 @@ function InterfazUser() {
       await axios.post('http://localhost:5000/registro', nuevaAlerta);
 
       // Actualizar el estado de la mascota a 'perdida'
-      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, {
+      await axios.patch(`http://localhost:5000/animales/${selectedMascota}`, {
         estado: 'perdida',
         alerta: nuevaAlerta
       });
 
       // await axios.post('http://localhost:5000/registro', nuevaAlerta);
-      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, nuevaAlerta);
+      // await axios.patch(`http://localhost:5000/animales/${selectedMascota}`, nuevaAlerta);
 
       const updatedMascotas = mascotas.map(mascota => {
         if (mascota.id === selectedMascota) {
@@ -185,7 +199,7 @@ function InterfazUser() {
               </select>
               <button className="BotonBusqueda"><img src={lupa} alt="lupa" className="Lupa" /></button>
             </div>
-            <div className="AnimalesNecesitados">
+            {/* <div className="AnimalesNecesitados">
 
               <div className="Animales">
                 {mascotas.map((mascota) => (
@@ -204,8 +218,27 @@ function InterfazUser() {
                     </div>
                   </div>
                 ))}
+                
+              </div>
+            </div> */}
+            <div className="AnimalesNecesitados">
+              <div className="Animales">
+                {mascotas.map((mascota) => (
+                  <div key={mascota.id} className={`Animal ${mascota.estado === 'abandono' ? 'abandono' : ''}`}>
+                    <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
+                    <div className="MascotaInfo">
+                      <h2 className="informacion1">
+                        Informar <img src={ojo} alt="ojo" className="Ojo" onClick={() => handleVisualizar(mascota)} />
+                      </h2>
+                      <h3>Nombre: <strong className="nombre">{mascota.nombre}</strong></h3>
+                      <h3>Sexo: {mascota.sexo}</h3>
+                      {mascota.estado === 'abandono' && <span className="EtiquetaAbandono">Abandonado</span>}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
+
           </div>
         </div>
         <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className="modal">
