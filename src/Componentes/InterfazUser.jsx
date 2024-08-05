@@ -121,23 +121,28 @@ function InterfazUser() {
     }
   };
 
+  const handleReportar = () => {
+    navigate(`/espacio/abandonado/${id}`);
+  };
   return (
     <div>
       <div>
         <header>
+          <h1>
+            ESPERANZA ANIMAL
+            <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
+          </h1>
           <div className="user-section">
             <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img src={imagenId} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
               {nombre}
             </p>
           </div>
-          <h1>
-            ESPERANZA ANIMAL
-            <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
-          </h1>
         </header>
+        <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
         <nav>
-          {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', '', 'Home'].map((item) => (
+          {/*           
+          {['Reportar Pérdida de mascota', 'Reportar Animal en Abandono', 'Administrar Registros de pérdida y de abandono', 'Home'].map((item) => (
             <button
               key={item}
               className={`nav-button ${active === item ? 'active' : ''}`}
@@ -145,9 +150,21 @@ function InterfazUser() {
             >
               {item}
             </button>
-          ))}
+          ))} */}
+          <button className='nav-button' onClick={() => handleClick(handleReportarPerdida)}>Reportar Pérdida de mascota</button>
+          <button className='nav-button' onClick={handleReportar}>Reportar Animal en Abandono</button>
+          <button className='nav-button'>Administrar Registros de pérdida y de abandono</button>
+          <button className='nav-button'>Home</button>
+          {/* {['Reportar Pérdida de mascota', 'Reportar Animal en Abandono', 'Administrar Registros de pérdida y de abandono', 'Home'].map((item) => (
+            <button
+              key={item}
+              className={`nav-button ${active === item ? 'active' : ''}`}
+              onClick={() => handleClick(item)}
+            >
+              {item}
+            </button>
+          ))} */}
         </nav>
-        <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
       </div>
       <main>
         <div className="container">
@@ -169,21 +186,7 @@ function InterfazUser() {
               <button className="BotonBusqueda"><img src={lupa} alt="lupa" className="Lupa" /></button>
             </div>
             <div className="AnimalesNecesitados">
-              <div className="encabezado">
-                <div className="contenedor-logo">
-                  <span className="logo">Necesitamos tu ayuda</span>
-                  <img src={brindarAyuda} className="icono-manos" />
-                </div>
-                <div className="contenedor-botones">
-                  <button className="boton">Reportar Animal en Abandono</button>
-                  <button className="boton" onClick={handleReportarPerdida}>Reportar Pérdida</button>
-                  <div className="desplegable">
-                    <select className="boton boton-desplegable">Administrar Registros
-                      <option>Administrar Registros</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+
               <div className="Animales">
                 {mascotas.map((mascota) => (
                   <div key={mascota.id} className={`Animal ${mascota.estado === 'perdida' ? 'perdida' : ''}`}>
@@ -246,7 +249,7 @@ function InterfazUser() {
               <p>Raza: {mascotaPerdida.raza}</p>
               <p>Sexo: {mascotaPerdida.sexo}</p>
               <p>Color: {mascotaPerdida.color}</p>
-              <p>Tamaño: {mascotaPerdida.tamaño}</p>
+              <p>tamano: {mascotaPerdida.tamano}</p>
               <p>Personalidad: {mascotaPerdida.personalidad}</p>
               <p>Rasgos distintivos: {mascotaPerdida.rasgosDistintivos}</p>
               {mascotaPerdida.alerta && (
