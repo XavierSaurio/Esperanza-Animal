@@ -16,6 +16,7 @@ import RegistrarMascota from './Componentes/RegistrarMascota'
 // import NavBarRegistro from './Componentes/NavBarRegistro';
 import InterfazUser from './Componentes/InterfazUser';
 import TuEspacio from './Componentes/TuEspacio';
+import RegistrarMascotaAbandono from './Componentes/RegistrarMascotaAbandono';
 
 
 function App() {
@@ -44,12 +45,17 @@ function App() {
             </div>
           } />
           <Route path="/animales/:id" element={
-
             <div>
               <InterfazUser></InterfazUser>
             </div>
-
           } />
+          {/* r */}
+          <Route path="/espacio/abandonado/:id" element={
+            <div>
+              <RegistrarMascotaAbandono></RegistrarMascotaAbandono>
+            </div>
+          } />
+          {/* r */}
           <Route path="/animales/reportar" element={
             <div>
               <RegistroForm />
