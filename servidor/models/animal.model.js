@@ -3,7 +3,7 @@ const sequelize = require('../config/sequelize.config');
 
 // Crear un modelo SIN EL ESQUEMA
 const Animal  = sequelize.define('Animal', {
-    nombre: {
+    nombreAbandonado: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -98,6 +98,23 @@ const Animal  = sequelize.define('Animal', {
         //     notNull: { msg: "Foto es requerida" }
         // }
     },
+    situacion: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Situacion es requerida" },
+            notEmpty: { msg: "Este campo es obligatorio" }
+        }
+    },
+    estado: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'abandonado',
+        validate: {
+            notNull: { msg: "Estado es requerido" },
+            notEmpty: { msg: "Este campo es obligatorio" }
+        }
+    }
 });
 
 module.exports = Animal;
