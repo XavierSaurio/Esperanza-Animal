@@ -1,450 +1,539 @@
 body {
-    font-family: serif, sans-serif;
-    background-color: #F0E7E0;
-  }  
-  main {
-    margin-top: 20px;
-  }
-.container {
-    display: flex; /* Esto permite que las cajas se coloquen una al lado de la otra si es necesario */
-    flex-direction: column; /* Usa 'row' si deseas que las cajas estén una al lado de la otra */
-    margin: 0; /* Sin márgenes */
-    padding: 0; /* Sin padding */
-    height: 100%;
-    width: 100%;
+  font-family: serif, sans-serif;
+  background-color: #F0E7E0;
 }
+
+main {
+  margin-top: 20px;
+  padding: 0px;
+
+}
+
+.container {
+  display: flex;
+  /* Esto permite que las cajas se coloquen una al lado de la otra si es necesario */
+  flex-direction: column;
+  /* Usa 'row' si deseas que las cajas estén una al lado de la otra */
+  margin: 0;
+  /* Sin márgenes */
+  padding: 0px;
+  /* Sin padding */
+  height: 100%;
+  width: 100%;
+}
+
 /*HEADER*/
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-  }
-  .usuario{
-    font-size: 16px;
-  }
-  header p{
-    letter-spacing: 1.5px;
-  }
-  
-  header h1 {
-    text-align: center;
-    flex-grow: 1;
-    color: #774d38;
-    letter-spacing: 4px;
-  }
-  .esperanzaImg{
-    width: 53px;
-  }
-  .presentacionImg{
-    width: 70%;
-    justify-content: center;
-    margin-left: 15%;
-    margin-top: 1%;
-  }
-
-  .icon {
-    width:30px; 
-    height:30px;
-    margin-right: 10px; 
-    
-  }
-  nav {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .nav-button {
-    background-color:#efe7dd;
-    padding: 10px 75px ;
-    cursor: pointer;
-    color:#774d38;
-    letter-spacing: 1.5px;
-    font-size: 16px;
-    text-align: center; /* Centra el texto horizontalmente */
-    display: inline-block; /* Asegura que el botón se comporte correctamente */
-    width: auto; /* Ajusta el ancho del botón automáticamente */
-    white-space: nowrap;
-  }
-  
-  .nav-button.active {
-    background-color: #764b36;
-    color: white;
-    
-  }
-  
-  nav .nav-button:not(.active):hover {
-    background-color: #8B4513;
-    color: white;
-  }
-  /*BRINDAR AYUDA*/
-.encabezado {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f5ece4; /* Ajusta el color según sea necesario */
-
-    border-bottom: 2px solid #d1b7a1; /* Ajusta el color según sea necesario */
-  }
-  
-  .contenedor-logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 30px;
-    font-weight: bold;
-    color: #7c5231; /* Ajusta el color según sea necesario */
-    margin-right: -110px;
-    margin-top: 60px;
-    margin-bottom: -95px;
-    margin-left: 40px;
-    letter-spacing: 1.5px;
-  }
-  
-  .icono-manos {
-    width: 15%;
-  }
-  
-  .contenedor-botones {
-    display: flex;
-    align-items: center;
-  }
-  
-  .boton {
-    font-size: 17px;
-    font-family: serif, sans-serif;
-    background-color: #f7c5a0; /* Ajusta el color según sea necesario */
-    border: 2px solid black; /* Ajusta el color según sea necesario */
-    color: #7c5231; /* Ajusta el color según sea necesario */
-    padding: 15px 40px;
-    margin: 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .boton:hover {
-    background-color: #f5a882; /* Ajusta el color según sea necesario */
-  }
-  
-  .desplegable {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .boton-desplegable {
-    background-color: #ffffff; /* Ajusta el color según sea necesario */
-    color: black;
-}
-  
-  .contenido-desplegable {
-    display: none;
-    position: absolute;
-    background-color: #ffffff; /* Ajusta el color según sea necesario */
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .desplegable:hover .contenido-desplegable {
-    display: block;
-  }
-  
-  .contenido-desplegable a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .contenido-desplegable a:hover {
-    background-color: #f1f1f1;
-  }
-.cajaA, .cajaB {
-    margin: 0; /* Sin márgenes */
-    padding: 0; /* Sin padding */
-    flex: 1; /* Permite que ambas cajas tomen el mismo espacio disponible */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
 }
 
-.cajaA {
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-    color: #543426;
-    font-size: 10px;
+.usuario {
+  font-size: 16px;
+}
+
+header p {
+  letter-spacing: 1.5px;
+}
+
+header h1 {
+  text-align: start;
+  flex-grow: 1;
+  color: #774d38;
+  letter-spacing: 4px;
+}
+
+.esperanzaImg {
+  width: 53px;
+  background-color: #F0E7E0;
+}
+
+.presentacionImg {
+  width: 50px;
+  margin: 0;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  /* margin-right: 10px; */
+
+}
+
+nav {
+  display: flex;
+  padding: 0px;
+  width: auto;
+}
+
+.nav-button {
+  /* background-color: #efe7dd; */
+  padding: 10px 75px;
+  cursor: pointer;
+  background-color: #3C332C;
+  color: white;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  text-align: center;
+  /* Centra el texto horizontalmente */
+  display: inline-block;
+  /* Asegura que el botón se comporte correctamente */
+  width: auto;
+  /* Ajusta el ancho del botón automáticamente */
+  white-space: nowrap;
+}
+
+.nav-button.active {
+  background-color: #764b36;
+  color: white;
+
+}
+
+nav .nav-button:not(.active):hover {
+  background-color: #8B4513;
+  color: white;
+}
+
+/*BRINDAR AYUDA*/
+
+
+.contenedor-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #7c5231;
+  /* Ajusta el color según sea necesario */
+  margin-right: -110px;
+  margin-top: 60px;
+  margin-bottom: -95px;
+  margin-left: 40px;
+  letter-spacing: 1.5px;
+}
+
+.icono-manos {
+  width: 15%;
+}
+
+.contenedor-botones {
+  display: flex;
+  align-items: center;
+  background-color: #3C332C;
+  /* Ajusta el color según sea necesario */
+  color: white;
+}
+
+.boton {
+  font-size: 17px;
+  font-family: serif, sans-serif;
+  background-color: #f7c5a0;
+  /* Ajusta el color según sea necesario */
+  border: 2px solid black;
+  /* Ajusta el color según sea necesario */
+  color: #7c5231;
+  /* Ajusta el color según sea necesario */
+  padding: 15px 40px;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton:hover {
+  background-color: #f5a882;
+  /* Ajusta el color según sea necesario */
+}
+
+.desplegable {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-desplegable {
+  background-color: #ffffff;
+  /* Ajusta el color según sea necesario */
+  color: black;
+}
+
+.contenido-desplegable {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  /* Ajusta el color según sea necesario */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.desplegable:hover .contenido-desplegable {
+  display: block;
+}
+
+.contenido-desplegable a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.contenido-desplegable a:hover {
+  background-color: #f1f1f1;
+}
+
+/* .cajaA,
+.cajaB {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+} */
+
+.cajaA,
+.cajaB {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 50px;
+  color: #543426;
+  font-size: 10px;
 }
 
 .titulo0 {
-    flex: 2;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  flex: 2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .userimg {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .titulo1 {
-    color: #6D3317;
-    flex: 15;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  color: #6D3317;
+  flex: 15;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .user {
-    font-size: 45px;
-    font-weight: normal;
+  font-size: 45px;
+  font-weight: normal;
 }
 
 .titulo2 {
-    flex: 30;
-    display: flex;
-    justify-content: flex-start;
+  flex: 30;
+  display: flex;
+  justify-content: flex-start;
 }
-.perroimg{
-    width: 45px;
-    height: 45px;
+
+.perroimg {
+  width: 45px;
+  height: 45px;
 }
+
 .esperanzaA {
-    font-size: 45px;
-    font-weight: normal;
+  font-size: 45px;
+  font-weight: normal;
 }
+
 .AnimalesR {
-    width: 77%;
-    height: 215px;
-    flex-wrap: nowrap
+  width: 77%;
+  height: 215px;
+  flex-wrap: nowrap
 }
+
 .ar {
 
-    margin-left: 15%;
-    /* margin-right: 15%; */
-    justify-content: center;
-    align-items: center;
+  margin-left: 15%;
+  /* margin-right: 15%; */
+  justify-content: center;
+  align-items: center;
 }
+
 .botonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    /* gap: 0; Sin separación entre botones */
-    margin-left: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  /* gap: 0; Sin separación entre botones */
+  margin-left: 5%;
 
 }
+
 .Boton {
-    background-color: #F0E7E0;
-    border: 1px solid black; /* Borde negro */
-    color: #543426;
-    text-transform: capitalize;
-    cursor: pointer;
-    font-size: 16px;
-    transition: color 0.3s ease;
-    flex: 1; /* Hace que los botones tomen el mismo ancho */
-    height: 50px; /* Altura fija para todos los botones */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0; /* Sin márgenes */
+  background-color: #F0E7E0;
+  border: 1px solid black;
+  /* Borde negro */
+  color: #543426;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  flex: 1;
+  /* Hace que los botones tomen el mismo ancho */
+  height: 50px;
+  /* Altura fija para todos los botones */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  /* Sin márgenes */
 
 }
+
 .Boton:hover {
-    background-color: #543426;
-    color: white;
-    /* Cambia el color del texto a blanco cuando el cursor pasa por el botón */
+  background-color: #543426;
+  color: white;
+  /* Cambia el color del texto a blanco cuando el cursor pasa por el botón */
 }
+
 .FiltroBusqueda {
-    display: flex;
-    width: 78%;
-    background-color: #F0E7E0;
-    border: 1px solid black;
-    box-sizing: border-box;
-    margin-left: 5%;
-    color: white;
-    gap: 0;
-    letter-spacing: 1.3px;
-    font-size: 16px;
+  display: flex;
+  width: 78%;
+  background-color: #F0E7E0;
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin-left: 5%;
+  color: white;
+  gap: 0;
+  letter-spacing: 1.3px;
+  font-size: 16px;
 
 }
-.FB, .Select, .BotonBusqueda {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-    margin: 0;
-    border-right: 1px solid black; /* Añade un borde derecho */
-    height: 50px; /* Asegura que todos tengan la misma altura */
-    box-sizing: border-box; /* Incluye el padding y el borde en el tamaño */
-    background-color: #F0E7E0;
-    font-weight: normal;
+
+.FB,
+.Select,
+.BotonBusqueda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  margin: 0;
+  border-right: 1px solid black;
+  /* Añade un borde derecho */
+  height: 50px;
+  /* Asegura que todos tengan la misma altura */
+  box-sizing: border-box;
+  /* Incluye el padding y el borde en el tamaño */
+  background-color: #F0E7E0;
+  font-weight: normal;
 }
+
 .FB {
-    background-color: #BD8D79;
-    border-right: 1px solid black; /* Añade un borde derecho a la primera caja */
+  background-color: #BD8D79;
+  border-right: 1px solid black;
+  /* Añade un borde derecho a la primera caja */
 }
-.Filtrar{
-    font-weight: normal;
+
+.Filtrar {
+  font-weight: normal;
 
 }
 
 .Select {
-    flex: 1;
-    text-align: start;
-    appearance: none; /* Elimina los estilos por defecto del selector */
-    color: #543426;
+  flex: 1;
+  text-align: start;
+  appearance: none;
+  /* Elimina los estilos por defecto del selector */
+  color: #543426;
 
 }
 
 .BotonBusqueda {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lupa {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .FiltroInput {
-    text-align: start;
-    margin-bottom: 10px;
-    margin-left: 5%;
-    font-weight: normal;
-    color: #543426;
+  text-align: start;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  font-weight: normal;
+  color: #543426;
 
 
 }
-  /*ETIQUETA DE SITUACION*/ 
-  .EtiquetaSituacion_Perdida {
-    position: absolute;
-    top: 703px;
-    left: 38px;
-    background-color: #f5c542; /* Ajusta el color según sea necesario */
-    color: #000; /* Ajusta el color según sea necesario */
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-  .EtiquetaSituacion_Abandono {
-    position: absolute;
-    top: 703px;
-    left: 327px;
-    background-color: #764b36; /* Ajusta el color según sea necesario */
-    color: white; /* Ajusta el color según sea necesario */
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-  .EtiquetaSituacion_Perdida1 {
-    position: absolute;
-    top: 703px;
-    left: 616px;
-    background-color: #f5c542; /* Ajusta el color según sea necesario */
-    color: #000; /* Ajusta el color según sea necesario */
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-  .EtiquetaSituacion_Abandono1 {
-    position: absolute;
-    top: 703px;
-    left: 905px;
-    background-color: #764b36; /* Ajusta el color según sea necesario */
-    color: white; /* Ajusta el color según sea necesario */
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-  .EtiquetaSituacion_Perdida2 {
-    position: absolute;
-    top: 703px;
-    left: 1194px;
-    background-color: #f5c542; /* Ajusta el color según sea necesario */
-    color: #000; /* Ajusta el color según sea necesario */
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-.Animales{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    padding: 0;
-    margin: 0 auto;
-    gap: 0px; 
+
+/*ETIQUETA DE SITUACION*/
+.EtiquetaSituacion_Perdida {
+  position: absolute;
+  top: 703px;
+  left: 38px;
+  background-color: #f5c542;
+  /* Ajusta el color según sea necesario */
+  color: #000;
+  /* Ajusta el color según sea necesario */
+  padding: 5px 10px;
+  font-weight: bold;
 }
-.Animal{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #F0E7E0;
-    flex: 1;
-    margin: 0;
-    border: 1px solid black; /* Borde negro */
-    border-radius: 0;
+
+.EtiquetaSituacion_Abandono {
+  position: absolute;
+  top: 703px;
+  left: 327px;
+  background-color: #764b36;
+  /* Ajusta el color según sea necesario */
+  color: white;
+  /* Ajusta el color según sea necesario */
+  padding: 5px 10px;
+  font-weight: bold;
 }
-.InfoMascota{
-    /* display: flex;
+
+.EtiquetaSituacion_Perdida1 {
+  position: absolute;
+  top: 703px;
+  left: 616px;
+  background-color: #f5c542;
+  /* Ajusta el color según sea necesario */
+  color: #000;
+  /* Ajusta el color según sea necesario */
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.EtiquetaSituacion_Abandono1 {
+  position: absolute;
+  top: 703px;
+  left: 905px;
+  background-color: #764b36;
+  /* Ajusta el color según sea necesario */
+  color: white;
+  /* Ajusta el color según sea necesario */
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.EtiquetaSituacion_Perdida2 {
+  position: absolute;
+  top: 703px;
+  left: 1194px;
+  background-color: #f5c542;
+  /* Ajusta el color según sea necesario */
+  color: #000;
+  /* Ajusta el color según sea necesario */
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.AnimalesNecesitados {
+  display: flex;
+  width: 78%;
+  background-color: #F0E7E0;
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin-left: 5%;
+  color: white;
+  gap: 0;
+  letter-spacing: 1.3px;
+  font-size: 16px;
+
+}
+
+.Animales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  padding: 0;
+  margin: 0 auto;
+  gap: 0px;
+}
+
+.Animal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0E7E0;
+  flex: 1;
+  margin: 0;
+  border: 1px solid black;
+  /* Borde negro */
+  border-radius: 0;
+}
+
+.InfoMascota {
+  /* display: flex;
     flex-direction: column; */
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: start;
-    padding: 3%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+  padding: 3%;
 
 }
-.grave{
-    
-    background-color: #FE3233;
-    color: white;
+
+.grave {
+
+  background-color: #FE3233;
+  color: white;
 }
-.Ojo{
-    width: 25px;
-    height: 25px;
+
+.Ojo {
+  width: 25px;
+  height: 25px;
 
 }
+
 .ImagenMascota {
-    
-    height: 100px;
-    width: auto ;
-    margin: 20px 10px 20px 10px;
+  height: 150px;
+  width: 180px;
+  margin: 20px 10px 20px 10px;
 }
-  
-  .InfoMascota span {
-    display: block;
-    margin-bottom: 5px;
 
-  }
+.InfoMascota span {
+  display: block;
+  margin-bottom: 5px;
+
+}
 
 .Mas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%; /* Ajusta esto según el tamaño del contenedor que desees */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  /* Ajusta esto según el tamaño del contenedor que desees */
 }
 
-.mas {
-    background-color: #F0E7E0;
-    display: block;
-    width: 145px;
-    height: 145%;
+.EtiquetaAbandono {
+  text-align: left;
+  /* align-items: ; */
+  justify-content: left;
+  background-color: #784A3A;
+  color: white;
+  font-size: 20px;
 }
+
 .informacion1 {
-    font-weight: normal;
-    /* font-size: 1rem; Ajusta el tamaño del texto según sea necesario */
-    /* margin-top: 10px; Añade un margen superior para separar la imagen del texto */
-    /* text-align: center; Centra el texto */
-    color: #543426;
-    font-size: 20px;
-    padding: 0% 0% 0% 40%;
-    text-align: center;
+  font-weight: normal;
+  color: #543426;
+  font-size: 20px;
 }
-h3{
-    color: black;
-    font-size: 16px;
-}
-.NecesitamosAyuda{
-    color: #543426;
 
-}    
+h3 {
+  color: black;
+  font-size: 16px;
+}
+
+.NecesitamosAyuda {
+  color: #543426;
+
+}
+
+.imagenPerfil {
+  display: flex;
+  padding-right: 150px;
+}

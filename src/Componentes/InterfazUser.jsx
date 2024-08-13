@@ -3,12 +3,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
 import { ReactComponent as IconoSVG } from '../icons/icono-usuario.svg';
-import imagen from '../Imagenes/icono2.jpg';
+import logo from '../assets/logo.webp'
 import imgPresentacion from '../Imagenes/Img4.png';
 import brindarAyuda from '../icons/icono-ayuda.svg';
 import lupa from '../assets/icono-lupa.svg';
 import ojo from '../assets/icono-ojo.svg';
 import '../Estilos/InterfazUser.css';
+import { Typography } from "@mui/material";
+import perroperfil from '../Imagenes/perro_perfil.webp';
+
 
 Modal.setAppElement('#root');
 
@@ -17,6 +20,7 @@ function InterfazUser() {
   const { id } = useParams();
 
   const [mascotas, setMascotas] = useState([]);
+  const [abandonos, setAbandonos] = useState([]); // Nuevo estado para abandonos
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMascota, setSelectedMascota] = useState('');
   const [provincia, setProvincia] = useState('');
@@ -27,17 +31,17 @@ function InterfazUser() {
   const [active, setActive] = useState('Registrar Mascota');
   const [nombre, setNombre] = useState('');
   const [imagenId, setImagenId] = useState('');
-  const [mascotaPerdida, setMascotaPerdida] = useState(null); // Estado para la mascota seleccionada
-  const [celularDuenio, setCelularDuenio] = useState(''); // Estado para el celular del dueño
+  const [mascotaPerdida, setMascotaPerdida] = useState(null);
+  const [celularDuenio, setCelularDuenio] = useState('');
   const [showAvistamientoModal, setShowAvistamientoModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/login/${id}`);
+        const response = await axios.get(`http://localhost:5000/usuarios/${id}`);
         setNombre(response.data.nombre);
         setImagenId(response.data.fotoPerfil);
-        setCelularDuenio(response.data.celular); // Guardar el celular del dueño
+        setCelularDuenio(response.data.celular);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -45,10 +49,11 @@ function InterfazUser() {
     fetchData();
   }, [id]);
 
+
   useEffect(() => {
     const fetchMascotas = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/mascota');
+        const response = await axios.get('http://localhost:5000/animal');
         setMascotas(response.data.filter(mascota => mascota.id_duenio === id));
       } catch (error) {
         console.error('Error fetching mascotas:', error);
@@ -56,13 +61,21 @@ function InterfazUser() {
     };
     fetchMascotas();
   }, [id]);
+  // Nuevo useEffect para obtener abandonos
+  useEffect(() => {
+    const fetchAbandonos = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/animal'); // Cambia según tu endpoint
+        setAbandonos(response.data.filter(mascota => mascota.estado === 'abandonado'));
+      } catch (error) {
+        console.error('Error fetching abandonos:', error);
+      }
+    };
+    fetchAbandonos();
+  }, []);
 
-  const handleClick = (item) => {
-    if (item === 'Home') {
-      navigate('/login/menu');
-    } else {
-      setActive(item);
-    }
+  const handleClick = (path) => {
+    navigate(path);
   };
 
   const handleReportarPerdida = () => {
@@ -70,11 +83,16 @@ function InterfazUser() {
   };
 
   const handleVisualizar = (mascota) => {
-    // navigate(`/animales/visualizar/${id}`);
-    setMascotaPerdida(mascota);
+    setSelectedMascota(mascota);
     setShowModal(true);
   };
-
+  const mostrarFoto = (mascota) => {
+    if (!mascota.fotoMascota) {
+      return <img src={perroperfil} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
+    } else {
+      return <img src={`http://localhost:5000${mascota.fotoMascota}`} alt={mascota.nombreAbandonado} className="ImagenMascota" />;
+    }
+  };
   const handleSubmit = async () => {
     try {
       const selected = mascotas.find(mascota => mascota.id === selectedMascota);
@@ -91,17 +109,12 @@ function InterfazUser() {
         descripcion,
         estado: 'perdida'
       };
-      // Guardar la alerta en la tabla 'registro'
-      await axios.post('http://localhost:5000/registro', nuevaAlerta);
 
-      // Actualizar el estado de la mascota a 'perdida'
-      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, {
+      await axios.post('http://localhost:5000/registro', nuevaAlerta);
+      await axios.patch(`http://localhost:5000/animales/${selectedMascota}`, {
         estado: 'perdida',
         alerta: nuevaAlerta
       });
-
-      // await axios.post('http://localhost:5000/registro', nuevaAlerta);
-      await axios.patch(`http://localhost:5000/mascota/${selectedMascota}`, nuevaAlerta);
 
       const updatedMascotas = mascotas.map(mascota => {
         if (mascota.id === selectedMascota) {
@@ -121,37 +134,40 @@ function InterfazUser() {
     }
   };
 
+  const handleReportar = () => {
+    navigate(`/espacio/abandonado/${id}`);
+  };
+
   return (
     <div>
-      <div>
-        <header>
-          <div className="user-section">
-            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={imagenId} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+      <header>
+        <h1>
+          ESPERANZA ANIMAL
+          <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
+        </h1>
+        <div className="user-section">
+          <div style={{ display: 'flex', alignItems: 'start' }}>
+            <img
+              style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+              src={`http://localhost:5000${imagenId}`}
+              alt="Foto"
+            />
+            <Typography sx={{ color: '#754a36', marginLeft: '0.5rem' }}>
               {nombre}
-            </p>
+            </Typography>
           </div>
-          <h1>
-            ESPERANZA ANIMAL
-            <img src={imagen} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
-          </h1>
-        </header>
-        <nav>
-          {['Mascotas en Abandono', 'Registrar Mascota en Abandono', 'Brindar Ayuda a un Animal', '', 'Home'].map((item) => (
-            <button
-              key={item}
-              className={`nav-button ${active === item ? 'active' : ''}`}
-              onClick={() => handleClick(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </nav>
-        <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
-      </div>
+        </div>
+      </header>
+      <img src={imgPresentacion} className="presentacionImg" alt="Imagen de Presentación" />
+      <nav>
+        <button className='nav-button' onClick={handleReportarPerdida}>Reportar Pérdida de mascota</button>
+        <button className='nav-button' onClick={handleReportar}>Reportar Animal en Abandono</button>
+        <button className='nav-button'>Administrar Registros de pérdida y de abandono</button>
+        <button className='nav-button' onClick={() => handleClick()}>Home</button>
+      </nav>
       <main>
         <div className="container">
-          <div className="cajaB">
+          <div className="cajaA">
             <h2 className="FiltroInput">Filtro de Búsqueda</h2>
             <div className="FiltroBusqueda">
               <div className="FB">
@@ -168,42 +184,34 @@ function InterfazUser() {
               </select>
               <button className="BotonBusqueda"><img src={lupa} alt="lupa" className="Lupa" /></button>
             </div>
-            <div className="AnimalesNecesitados">
-              <div className="encabezado">
-                <div className="contenedor-logo">
-                  <span className="logo">Necesitamos tu ayuda</span>
-                  <img src={brindarAyuda} className="icono-manos" />
-                </div>
-                <div className="contenedor-botones">
-                  <button className="boton">Reportar Animal en Abandono</button>
-                  <button className="boton" onClick={handleReportarPerdida}>Reportar Pérdida</button>
-                  <div className="desplegable">
-                    <select className="boton boton-desplegable">Administrar Registros
-                      <option>Administrar Registros</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div className="cajaB">
+
+            {/* <div className="AnimalesNecesitados"> */}
+
+            {abandonos.length > 0 ? (
               <div className="Animales">
-                {mascotas.map((mascota) => (
-                  <div key={mascota.id} className={`Animal ${mascota.estado === 'perdida' ? 'perdida' : ''}`}>
-                    <img src={mascota.fotoMascota} alt={mascota.nombre} className="ImagenMascota" />
+                {abandonos.map((mascota) => (
+                  <div key={mascota.id} className={`Animal ${mascota.estado === 'abandonado' ? 'abandonado' : ''}`}>
+                    {mascota.estado === 'abandonado' && <span className="EtiquetaAbandono">Abandono</span>}
+                    {mostrarFoto(mascota)}
                     <div className="MascotaInfo">
                       <h2 className="informacion1">
-                        Informar <img src={ojo} alt="ojo" className="Ojo" onClick={() => handleVisualizar(mascota)} />
+                        Brindar Ayuda <img src={ojo} alt="ojo" className="Ojo" onClick={() => handleVisualizar(mascota)} />
                       </h2>
-                      <h3>Nombre: <strong className="nombre">{mascota.nombre}</strong></h3>
-                      {mascota.estado === 'perdida' && mascota.alerta && (
-                        <h3>Ubicación: {mascota.alerta.provincia}, {mascota.alerta.canton}, {mascota.alerta.parroquia}</h3>
-                      )}
+                      <h3>Situación: {mascota.situacion}</h3>
+                      <h3>Ubicación de abandono: {mascota.provincia}, {mascota.canton}, {mascota.parroquia}</h3>
                       <h3>Sexo: {mascota.sexo}</h3>
-                      {mascota.estado === 'perdida' && <span className="EtiquetaPerdida">Perdida</span>}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            ) : (
+              <p>No hay animales en abandono.</p>
+            )}
+
           </div>
+          {/* </div> */}
         </div>
         <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className="modal">
           <h2>Reportar Mascota Perdida</h2>
@@ -242,27 +250,15 @@ function InterfazUser() {
           {mascotaPerdida && (
             <div>
               <h2>{mascotaPerdida.nombre}</h2>
-              <img src={mascotaPerdida.fotoMascota} alt={mascotaPerdida.nombre} className="Animal" />
-              <p>Raza: {mascotaPerdida.raza}</p>
-              <p>Sexo: {mascotaPerdida.sexo}</p>
-              <p>Color: {mascotaPerdida.color}</p>
-              <p>Tamaño: {mascotaPerdida.tamaño}</p>
-              <p>Personalidad: {mascotaPerdida.personalidad}</p>
-              <p>Rasgos distintivos: {mascotaPerdida.rasgosDistintivos}</p>
-              {mascotaPerdida.alerta && (
-                <>
-                  <p>Ubicación: {mascotaPerdida.alerta.provincia}, {mascotaPerdida.alerta.canton}, {mascotaPerdida.alerta.parroquia}</p>
-                  <p>Descripción del lugar: {mascotaPerdida.alerta.descripcion}</p>
-                  <button onClick={() => setShowAvistamientoModal(true)}>Comunicar Avistamiento</button>
-                </>
-              )}
+              <img src={mascotaPerdida.fotoMascota} alt={mascotaPerdida.nombre} />
+              <p><strong>Sexo:</strong> {mascotaPerdida.sexo}</p>
+              <p><strong>Raza:</strong> {mascotaPerdida.raza}</p>
+              <p><strong>Color:</strong> {mascotaPerdida.color}</p>
+              <p><strong>Tamaño:</strong> {mascotaPerdida.tamaño}</p>
+              <p><strong>Personalidad:</strong> {mascotaPerdida.personalidad}</p>
+              <p><strong>Rasgos Distintivos:</strong> {mascotaPerdida.rasgosDistintivos}</p>
             </div>
           )}
-        </Modal>
-        <Modal isOpen={showAvistamientoModal} onRequestClose={() => setShowAvistamientoModal(false)} className="modal-avistamiento">
-          <h2>Favor comunicarse al siguiente número:</h2>
-          <p>{celularDuenio}</p>
-          <button onClick={() => setShowAvistamientoModal(false)}>Cerrar</button>
         </Modal>
       </main>
     </div>
