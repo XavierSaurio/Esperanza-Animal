@@ -34,7 +34,14 @@ const disktorage3 = multer.diskStorage({
         cb(null,Date.now()+'-' + file.originalname)
     } 
 })
-
+///mascota
+const disktorage2 = multer.diskStorage({
+    
+    destination: path.join(__dirname, '../imagenes'),
+    filename: (req, file, cb) =>{
+        cb(null,Date.now()+'-' + file.originalname)
+    } 
+})
 //Es para registrar la imagen de un USUARIO 
 const fileupload = multer({
     storage: disktorage
@@ -46,10 +53,14 @@ const fileupload3 = multer({
 }).single('fotoMascotaUs')
 
 
+//Para registrar la mascota 
+const fileupload2 = multer({
+    storage: disktorage2
+}).single('fotoMascota')
 
 //Usar rutas con USUARIOS
 const allUserRoutes = require('../servidor/routes/user.routes');
-allUserRoutes(app, fileupload,fileupload3);
+allUserRoutes(app, fileupload, fileupload2,fileupload3);
 
 //Usar rutas con MASCOTAS
 //const allMascotaRoutes = require('../servidor/routes/mascota.routes');
@@ -120,4 +131,17 @@ app.post('/mascotas/new', fileupload3, async (req, res) => {
     }
 });
 
+// Use routes
 
+app.post('/animal', fileupload2, async (req, res) => {
+    console.log(req.body);
+    animals.push(req.body);
+    if(animals){
+        res.json({ status: "Añadido" })
+    }else{
+        res.status(404).json({ error: 'Usuario no creado' });
+    }
+});
+app.get('/animal', function (req, res) {
+    res.json(animals);
+})
