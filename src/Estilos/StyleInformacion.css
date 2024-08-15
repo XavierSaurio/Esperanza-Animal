@@ -36,6 +36,7 @@ body {
   }
   .presentacionImg{
     width: 75%;
+    height: 200px;
     justify-content: center;
     margin-left: 15%;
     margin-top: 1%;
