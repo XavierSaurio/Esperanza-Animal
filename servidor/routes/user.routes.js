@@ -11,4 +11,5 @@ module.exports = function (app, fileupload, fileupload2) {
     //para animales abandono
     app.post('/animal', fileupload2, animalController.createAnimal);
     app.get('/animal', animalController.getAllAnimals);
+    app.get('/animal/:id', animalController.getAnimalById); // Ruta para obtener un animal por su ID
 }

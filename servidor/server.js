@@ -43,9 +43,6 @@ const fileupload2 = multer({
     storage: disktorage2
 }).single('fotoMascota')
 
-
-
-
 const allUserRoutes = require('../servidor/routes/user.routes');
 allUserRoutes(app, fileupload, fileupload2);
 //Esuchando el puerto
@@ -83,8 +80,6 @@ app.post('/usuarios/new', fileupload, async (req, res) => {
 });
 
 // Use routes
-
-
 
 app.post('/animal', fileupload2, async (req, res) => {
     console.log(req.body);

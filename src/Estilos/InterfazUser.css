@@ -537,3 +537,498 @@ h3 {
   display: flex;
   padding-right: 150px;
 }
+/*MOSTRAR DATOS*/
+/* General styles for the modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  overflow: auto;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Close button style */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Styles for the modal content */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.modal h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #754a36;
+}
+
+.modal p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Modal title style */
+.modal-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #d9534f;
+  text-align: center;
+}
+
+.modal .informacion {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #754a36;
+}
+
+.modal .estado-grave {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.modal .brindar-ayuda-button {
+  background-color: #f79c42;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal .brindar-ayuda-button:hover {
+  background-color: #e38b36;
+}
+/*BRINDAR AYUDA*/
+.modal-contenedor2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px; /* Aumentado el padding */
+  border-radius: 20px;
+  width: 50%; /* Ancho mayor */
+  max-width: 550px;
+  height: 70%; /* Aumentado el alto del modal */
+  max-height: 700px; /* Altura máxima */
+  background: white;
+  border: 0px solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Permite scroll si el contenido excede la altura */
+}
+
+.modal-Titulo {
+  margin-top: 0px;
+  font-size: 38px;
+  margin-bottom: 20px; /* Aumentado el margen inferior */
+  font-weight: bold;
+}
+
+.cuerpo-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-image {
+  width: 40%; /* Tamaño de imagen ajustado */
+  max-width: 250px;
+  height: auto;
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #FBE7C6;
+  padding: 15px; /* Aumentado el padding */
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 15px 0; /* Aumentado el margen */
+}
+
+.info-titles, .info-descriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info-titles span, .info-descriptions span {
+  font-size: 14px; /* Aumentado el tamaño de fuente */
+  margin: 5px 0;
+}
+
+.select-label, .contact-label {
+  margin-top: 15px;
+  font-size: 14px; /* Aumentado el tamaño de fuente */
+}
+
+.select-input, .contact-input {
+  width: 90%; /* Aumentado el ancho */
+  padding: 8px; /* Aumentado el padding */
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px; /* Aumentado el padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: -250px; /* Ajustado el margen inferior */
+}
+
+.modal-button:hover {
+  background-color: #45a049;
+}
+/*PARA EL REGISTRO*/
+/* Estilo para el overlay que oscurece el fondo cuando el modal está abierto */
+.modal-overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo del contenedor del modal */
+.modal-contenedor1 {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  
+}
+
+/* Estilo para el contenido dentro del modal */
+.modal-content {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+.modal-content h2{
+  margin-left: 0px;
+  font-size: 20px;
+}
+
+/* Estilo de las secciones dentro del modal */
+.section {
+  margin-bottom: 20px;
+}
+
+/* Estilo de la tabla que contiene los registros */
+.table-container {
+  overflow-x: auto;
+  border: 2px solid tan;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid tan;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid tan;
+  border-right: 3px solid tan;;
+}
+
+th {
+  background-color: tan;
+}
+
+/* Estilo para los estados de los registros (No encontrado / Encontrado) */
+.estado {
+  display: flex;
+  gap: 10px;
+}
+
+.estado label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.estado input[type="radio"] {
+  margin-right: 5px;
+}
+
+.no-encontrado {
+  color: white; /* Cambia el color del texto a negro */
+  background-color: #d9534f; /* Fondo rojo para mantener el estilo anterior */
+  border-radius: 8px;
+  padding: 2px 5px; /* Añadir padding para que se vea mejor */
+}
+
+.encontrado {
+  color: white; /* Cambia el color del texto a negro */
+  background-color: #5cb85c; /* Fondo verde para mantener el estilo anterior */
+  border-radius: 8px;
+  padding: 2px 5px; /* Añadir padding para que se vea mejor */
+}
+
+/* Estilo para los estados de adopción */
+.no-adoptado {
+  color: white; /* Cambia el color del texto a negro */
+  background-color: #d9534f; /* Fondo rojo para mantener el estilo anterior */
+  border-radius: 8px;
+  padding: 2px 5px;
+}
+
+.adoptado {
+  color: white; /* Cambia el color del texto a negro */
+  background-color: #5cb85c; /* Fondo verde para mantener el estilo anterior */
+  border-radius: 8px;
+  padding: 2px 5px;
+}
+
+/* Estilo para los enlaces dentro de las tablas */
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botón de actualización del estado de la mascota */
+.update-button {
+  background-color: brown;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 320px;
+}
+
+.update-button:hover {
+  background-color: #4cae4c;
+}
+
+/* Botón para cerrar el modal */
+.close-modal-button {
+  background-color: brown;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 480px;
+}
+
+.close-modal-button:hover {
+  background-color: #c9302c;
+}
+
+/* Estilo para el scroll dentro del modal cuando hay mucho contenido */
+.modal-contenedor::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-contenedor::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.modal-contenedor::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+/*AVISTAMIENTO*/
+.sightings-modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8f5e9;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.sightings-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sightings-modal-title {
+  font-size: 24px;
+  color: #553d27;
+  margin-bottom: 15px;
+  text-align: center;
+  margin-right: 180px;
+}
+
+.sightings-table-container {
+  overflow-y: auto;
+  max-height: 300px;
+  margin-bottom: 20px;
+}
+
+.sightings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sightings-table th, 
+.sightings-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #d2b48c;
+}
+
+.sightings-table th {
+  background-color: #d2b48c;
+}
+
+.sightings-table td {
+  background-color: #ffffff;
+}
+
+.sightings-modal-close-button {
+  background-color: #8b5e3c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 520px;
+}
+
+.sightings-modal-close-button:hover {
+  background-color: #7a5134;
+}
+/*Estilo para historia de adopcion*/
+.modal-contenedor3 {
+  width: 600px;
+  padding: 20px;
+  background-color: #fff8f0;
+  border-radius: 15px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+.modal-overlay3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ayuda-form h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #333;
+  margin-left: -1px;
+}
+
+.ayuda-form h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.ayuda-form table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ayuda-form table th, .ayuda-form table td {
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.ayuda-form table th {
+  background-color: #fde6c1;
+}
+
+.ayuda-form table tr:nth-child(even) {
+  background-color: #fff8f0;
+}
+
+.ayuda-form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #8b5c2d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ayuda-form button:hover {
+  background-color: #a66b3b;
+}

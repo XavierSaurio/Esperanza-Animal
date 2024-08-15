@@ -23,3 +23,17 @@ module.exports.getAllAnimals = async (_, response) => {
         response.status(500).json({ message: 'No se pudieron recuperar los animales en abandono' });
     }
 };
+// Nuevo método para obtener un animal por su ID
+module.exports.getAnimalById = async (request, response) => {
+    const { id } = request.params;
+    try {
+        const animal = await Animal.findByPk(id);
+        if (animal) {
+            response.json(animal);
+        } else {
+            response.status(404).json({ message: 'Animal no encontrado' });
+        }
+    } catch (err) {
+        response.status(500).json({ message: 'No se pudo recuperar el animal' });
+    }
+};
