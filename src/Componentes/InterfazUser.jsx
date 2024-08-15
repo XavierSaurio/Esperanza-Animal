@@ -75,8 +75,8 @@ function InterfazUser() {
     fetchAbandonos();
   }, []);
 
-  const handleClick = (path) => {
-    navigate(path);
+  const handleClick = () => {
+    navigate('/login/menu/11');
   };
 
   const handleReportarPerdida = () => {
@@ -142,17 +142,17 @@ function InterfazUser() {
   // Modal Brindar Ayuda
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
-  
+
   //MODAL PARA REGISTRO DE MASCOTAS
   const [isModalROpen, setIsModalROpen] = useState(false);
   const openRModal = () => setIsModalROpen(true);
   const closeRModal = () => setIsModalROpen(false);
-   
+
   //MODAL PARA AVISTAMIENTO DE LA MASCOTA
   const [isModalAOpen, setIsModalAOpen] = useState(false);
   const openAModal = () => setIsModalAOpen(true);
   const closeAModal = () => setIsModalAOpen(false);
-  
+
   //AYUDA PARA HISTORIAL DE ABANDONO
   const [isModalHOpen, setIsModalHOpen] = useState(false);
   const openHModal = () => setIsModalHOpen(true);
@@ -167,15 +167,11 @@ function InterfazUser() {
 
   return (
     <div>
-      <header>
-        <h1>
-          ESPERANZA ANIMAL
-          <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
-        </h1>
+      <header style={{marginBottom:'0rem', padding:'0rem'}}>
         <div className="user-section">
-          <div style={{ display: 'flex', alignItems: 'start' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+              style={{ borderRadius: '50%', width: '40px', height: '40px', marginLeft: '1rem' }}
               src={`http://localhost:5000${imagenId}`}
               alt="Foto"
             />
@@ -184,12 +180,15 @@ function InterfazUser() {
             </Typography>
           </div>
         </div>
+        <h1 style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>ESPERANZA ANIMAL
+          <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
+        </h1>
       </header>
       <img src={imgPresentacion} className="presentacionImg" alt="Imagen de Presentación" />
       <nav>
         <button className='nav-button' onClick={handleReportarPerdida}>Reportar Pérdida de mascota</button>
         <button className='nav-button' onClick={handleReportar}>Reportar Animal en Abandono</button>
-        <button className='nav-button'onClick={openRModal}>Administrar Registros de pérdida y de abandono</button>
+        <button className='nav-button' onClick={openRModal}>Administrar Registros de pérdida y de abandono</button>
         <button className='nav-button' onClick={() => handleClick()}>Home</button>
       </nav>
       <main>
@@ -257,7 +256,7 @@ function InterfazUser() {
                   <p><strong>Sexo:</strong> {mascotaPerdida.sexo}</p>
                   <p><strong>Color:</strong> {mascotaPerdida.color}</p>
                   <p><strong>Tamaño:</strong> {mascotaPerdida.tamano} m</p>
-                  <p><strong>Situación de la mascota:</strong> 
+                  <p><strong>Situación de la mascota:</strong>
                     <span style={{ backgroundColor: 'red', color: 'white', padding: '5px', borderRadius: '5px' }}>
                       {mascotaPerdida.situacion}
                     </span>
@@ -269,7 +268,7 @@ function InterfazUser() {
             </div>
           )}
         </Modal>
-        {/*MODAL PARA BRINDAR AYUDA */}  
+        {/*MODAL PARA BRINDAR AYUDA */}
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Brindar Ayuda" className="modal-contenedor2">
           <h2 className="modal-Titulo">Brindar Ayuda</h2>
           <div className="cuerpo-modal">
@@ -343,115 +342,115 @@ function InterfazUser() {
           </form>
         </Modal>
         {/*MODAL DE REGISTRO DE MASCOTA */}
-    {/*<button className="open-modal-button" onClick={openRModal} type="button"> Abrir Ayuda </button>*/}
+        {/*<button className="open-modal-button" onClick={openRModal} type="button"> Abrir Ayuda </button>*/}
         <Modal
-        isOpen={isModalROpen}
-        onRequestClose={closeRModal}
-        contentLabel="Brindar Ayuda"
-        className="modal-contenedor1"
-        overlayClassName="modal-overlay1"
-      >
-        <div className="modal-content">
-          <h2>Tus registros de mascotas perdidas y animales en abandono</h2>
+          isOpen={isModalROpen}
+          onRequestClose={closeRModal}
+          contentLabel="Brindar Ayuda"
+          className="modal-contenedor1"
+          overlayClassName="modal-overlay1"
+        >
+          <div className="modal-content">
+            <h2>Tus registros de mascotas perdidas y animales en abandono</h2>
 
-          <div className="section">
-            <h3>Registros por pérdida:</h3>
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Mascota</th>
-                    <th>Estado de la mascota</th>
-                    <th>Cantidad de avistamientos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Goofy</td>
-                    <td>
-                      <div className="estado">
-                        <label>
-                          <input type="radio" name="goofy" />
-                          <span className="no-encontrado">No encontrado</span>
-                        </label>
-                        <label>
-                          <input type="radio" name="goofy" />
-                          <span className="encontrado">Encontrado</span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      4 <a href="#" onClick={openAModal}>Ver historial</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nala</td>
-                    <td>
-                      <div className="estado">
-                        <label>
-                          <input type="radio" name="nala" />
-                          <span className="no-encontrado">No encontrado</span>
-                        </label>
-                        <label>
-                          <input type="radio" name="nala" />
-                          <span className="encontrado">Encontrado</span>
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      0 <a href="#">Ver historial</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="section">
+              <h3>Registros por pérdida:</h3>
+              <div className="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Mascota</th>
+                      <th>Estado de la mascota</th>
+                      <th>Cantidad de avistamientos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Goofy</td>
+                      <td>
+                        <div className="estado">
+                          <label>
+                            <input type="radio" name="goofy" />
+                            <span className="no-encontrado">No encontrado</span>
+                          </label>
+                          <label>
+                            <input type="radio" name="goofy" />
+                            <span className="encontrado">Encontrado</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        4 <a href="#" onClick={openAModal}>Ver historial</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Nala</td>
+                      <td>
+                        <div className="estado">
+                          <label>
+                            <input type="radio" name="nala" />
+                            <span className="no-encontrado">No encontrado</span>
+                          </label>
+                          <label>
+                            <input type="radio" name="nala" />
+                            <span className="encontrado">Encontrado</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        0 <a href="#">Ver historial</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button className="update-button">Actualizar estado de la mascota</button>
             </div>
-            <button className="update-button">Actualizar estado de la mascota</button>
-          </div>
-          <div className="section">
-            <h3>Registros de abandono:</h3>
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ubicación del caso</th>
-                    <th>Estado del animal en abandono</th>
-                    <th>Cantidad de ayuda recibida</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Sector el Arenal, calle Josefa tinajero</td>
-                    <td>
-                      <span className="no-adoptado">No adoptado</span>
-                    </td>
-                    <td>
-                      4 <a href="#" onClick={openHModal}>Ver historial</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sector Tumbaco, calle Eugenio Espejo</td>
-                    <td>
-                      <span className="adoptado">Adoptado/Encontrado</span>
-                    </td>
-                    <td>
-                      6 <a href="#">Ver historial</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="section">
+              <h3>Registros de abandono:</h3>
+              <div className="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ubicación del caso</th>
+                      <th>Estado del animal en abandono</th>
+                      <th>Cantidad de ayuda recibida</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Sector el Arenal, calle Josefa tinajero</td>
+                      <td>
+                        <span className="no-adoptado">No adoptado</span>
+                      </td>
+                      <td>
+                        4 <a href="#" onClick={openHModal}>Ver historial</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Sector Tumbaco, calle Eugenio Espejo</td>
+                      <td>
+                        <span className="adoptado">Adoptado/Encontrado</span>
+                      </td>
+                      <td>
+                        6 <a href="#">Ver historial</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
+            <button className="close-modal-button" onClick={closeRModal}>
+              Cerrar
+            </button>
           </div>
-          <button className="close-modal-button" onClick={closeRModal}>
-            Cerrar
-          </button>
-        </div>
-      </Modal>
+        </Modal>
         {/*MODAL PARA AVISTAMIENTO */}
         {/*<button onClick={openAModal}>Ver Historial de Avistamientos</button>*/}
-        <Modal 
-          isOpen={isModalAOpen} 
-          onRequestClose={closeAModal} 
-          contentLabel="Historial de Avistamientos" 
+        <Modal
+          isOpen={isModalAOpen}
+          onRequestClose={closeAModal}
+          contentLabel="Historial de Avistamientos"
           className="sightings-modal-container"
           overlayClassName="sightings-modal-overlay"
         >

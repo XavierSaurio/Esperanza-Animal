@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import '../Estilos/StyleUI4.css'
 import '../Estilos/StyleInformacion.css'
 import '../Estilos/StyleRegistrar.css'
+import '../Estilos/InterfazUser.css'
 // import logoo from '../Imagenes/logo.webp'
 import imgPr from '../Imagenes/espacio.png'
 import { Card, CardContent, CardMedia, Typography, IconButton } from '@mui/material';
@@ -32,7 +33,7 @@ function TuEspacio() {
     const [active, setActive] = useState('Registar Mascota');
     const handleClick = (item) => {
         if (item === 'Home') {
-            navigate('/login/menu'); // Reemplaza '/home' con la ruta a la que quieres navegar
+            navigate('/login/menu/11'); // Reemplaza '/home' con la ruta a la que quieres navegar
         } else {
             setActive(item);
         }
@@ -85,14 +86,14 @@ function TuEspacio() {
 
     return (
         <div className="Container">
-            <header>
+            <header style={{display:'flex', flexDirection:'row', justifyContent:'space-around', alignItems:'center'}}>
                 <div className="user-section">
                     <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <img src={`http://localhost:5000${usuario.fotoPerfil}`} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+                        <img src={`http://localhost:5000${usuario.fotoPerfil}`} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px', marginLeft:'1rem' }} />
                         {usuario.nombre}
                     </p>
                 </div>
-                <h1>ESPERANZA ANIMAL
+                <h1 style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>ESPERANZA ANIMAL
                     <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
                 </h1>
             </header>
@@ -110,7 +111,7 @@ function TuEspacio() {
                         </button>
                     ))}
                 </nav>
-                <img src={imgPr} className='presentacionImg' alt="Imagen de Presentación" ></img>
+                <img style={{width:'100%', height:'220px'}} src={imgPr} className='presentacionImg' alt="Imagen de Presentación" ></img>
 
             </div>
 

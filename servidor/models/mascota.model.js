@@ -1,4 +1,4 @@
-module.exports = Mascota;const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize.config');
 const User = require('../models/user.model')
 //Requiere el modelo
