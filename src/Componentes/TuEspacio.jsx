@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import editar from '../assets/ico-editar.svg'
-import mas from '../assets/icono-mas.png'
-import logo from '../assets/logo.webp'
+import editar from '../Imagenes/cerrar.png'
+import mas from '../Imagenes/icono-mas.png'
+import logo from '../Imagenes/logo.webp'
 import { useNavigate } from "react-router-dom";
 // import '../Estilos/InterfazUser.css'
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 ///
-import '../Estilos/StyleUI4.css'
-import '../Estilos/StyleInformacion.css'
-import '../Estilos/StyleRegistrar.css'
+
 // import logoo from '../Imagenes/logo.webp'
 import imgPr from '../Imagenes/espacio.png'
 
