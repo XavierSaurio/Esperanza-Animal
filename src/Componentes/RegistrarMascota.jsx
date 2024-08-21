@@ -9,25 +9,11 @@ import imgPr from '../Imagenes/espacio.png';
 import perroperfil from '../Imagenes/perro_perfil.webp';
 
 function RegistrarMascota() {
-  const { id } = useParams();
-  const [nombre, setNombre] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Fetch the name associated with the id from the server
-    const fetchName = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/login/${id}`);
-        setNombre(response.data.nombre);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchName();
-  }, [id]);
-
   const [active, setActive] = useState('Registrar Mascota');
+
+  // Navbar
   const handleClick = (item) => {
     if (item === 'Home') {
       navigate('/login/menu');
@@ -36,38 +22,55 @@ function RegistrarMascota() {
     }
   };
 
-  const [imagenId, setImagenId] = useState('');
+  // Recuperar el Usuario
+  const PETICION_GET_USUARIO = "http://localhost:5000/usuarios/";
+  const [usuario, setUsuario] = useState({
+    nombre: null,
+    fotoPerfil: null
+  });
+  const { id } = useParams();
 
   useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/login/${id}`);
-        setImagenId(response.data.fotoPerfil);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchImage();
+    axios.get(PETICION_GET_USUARIO + id)
+      .then(respuesta => {
+        const userData = respuesta.data;
+        setUsuario(userData);
+        setDatosMascota(prevState => ({
+          ...prevState,
+          userId: userData.id // Asigna el ID del usuario al estado de la mascota
+        }));
+      })
+      .catch(err => console.log(err));
   }, [id]);
 
+  // Registrar Mascota
+  const PETICIONPOST = "http://localhost:5000/mascotas/new";
   const [datosMascota, setDatosMascota] = useState({
     nombre: '',
     tipo: '',
     raza: '',
     sexo: '',
     color: '',
-    tamaño: '',
+    tamano: '',
     personalidad: '',
     rasgosDistintivos: '',
-    id_duenio: id,
-    fotoMascota: ''
+    fotoMascotaUs: '',
+    userId: null
   });
 
-  const handleChange = (e) => {
-    setDatosMascota({
-      ...datosMascota,
-      [e.target.id]: e.target.value
-    });
+  const selectedImage = (e) => {
+    setDatosMascota(prevState => ({
+      ...prevState,
+      fotoMascotaUs: e.target.files[0]
+    }));
+  }
+
+  const manejadorInput = (event) => {
+    const { name, value } = event.target;
+    setDatosMascota(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const validate = () => {
@@ -77,41 +80,55 @@ function RegistrarMascota() {
     tempErrors.raza = datosMascota.raza ? "" : "Este campo es obligatorio.";
     tempErrors.sexo = datosMascota.sexo ? "" : "Este campo es obligatorio.";
     tempErrors.color = datosMascota.color ? "" : "Este campo es obligatorio.";
-    tempErrors.tamaño = datosMascota.tamaño ? "" : "Este campo es obligatorio.";
+    tempErrors.tamano = datosMascota.tamano ? "" : "Este campo es obligatorio.";
     tempErrors.personalidad = datosMascota.personalidad ? "" : "Este campo es obligatorio.";
     tempErrors.rasgosDistintivos = datosMascota.rasgosDistintivos ? "" : "Este campo es obligatorio.";
     setErrors(tempErrors);
     return Object.values(tempErrors).every(x => x === "");
   };
 
-  const handleSubmit = async (e) => {
+  const manejadorSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    Object.keys(datosMascota).forEach(key => {
+      formData.append(key, datosMascota[key]);
+    });
+
     if (validate()) {
       try {
-        await axios.post("http://localhost:5000/mascota", datosMascota);
-        navigate(`/espacio/${id}`);
-        console.log("Data sent successfully!");
+        const res = await axios.post(PETICIONPOST, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        if (res.status === 201 || res.status === 200) {
+          console.log('Datos enviados con éxito');
+          navigate(`/espacio/${usuario.id}`);
+        } else {
+          console.error('Error al enviar datos');
+        }
       } catch (error) {
-        console.error(error);
+        console.error('Error en la solicitud:', error);
       }
     }
   };
 
   const mostrarFoto = () => {
-    if (datosMascota.fotoMascota === "") {
+    if (datosMascota.fotoMascotaUs === "") {
       return <img src={perroperfil} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
     } else {
-      return <img src={datosMascota.fotoMascota} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
+      return <img src={URL.createObjectURL(datosMascota.fotoMascotaUs)} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
     }
   };
 
   return (
-    <div className="Container" onSubmit={handleSubmit}>
+    <div className="Container">
       <header>
         <div className="user-section">
           <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={imagenId} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
-            {nombre}
+            <img src={`http://localhost:5000${usuario.fotoPerfil}`} alt="Imagen" style={{ borderRadius: '50%', width: '40px', height: '40px' }} />
+            {usuario.nombre}
           </p>
         </div>
         <h1>ESPERANZA ANIMAL
@@ -136,21 +153,33 @@ function RegistrarMascota() {
       <div className='containerT'>
         <h2>Datos de la mascota</h2>
         <section className="form-section">
-          <form>
+          <form onSubmit={manejadorSubmit}>
             <div className="form-container">
               <div className="form-group-container">
                 <div className="form-group">
                   <div className='form-group1'>
                     <div>
                       <label>Ingrese el Nombre de su Mascota</label>
-                      <input type="text" placeholder="Fred" className='Mascota' id="nombre" value={datosMascota.nombre} onChange={handleChange} />
+                      <input
+                        type="text"
+                        placeholder="Fred"
+                        className='Mascota'
+                        name="nombre"
+                        value={datosMascota.nombre}
+                        onChange={manejadorInput}
+                      />
                       {errors.nombre && <p className="error" style={{ color: 'red' }}>{errors.nombre}</p>}
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
                   <label>Seleccione su tipo de Mascota</label>
-                  <select className="small-select" id="tipo" value={datosMascota.tipo} onChange={handleChange}>
+                  <select
+                    className="small-select"
+                    name="tipo"
+                    value={datosMascota.tipo}
+                    onChange={manejadorInput}
+                  >
                     <option value="">Seleccione</option>
                     <option>Gato</option>
                     <option>Perro</option>
@@ -159,7 +188,12 @@ function RegistrarMascota() {
                 </div>
                 <div className="form-group">
                   <label>Seleccione la Raza de su Mascota</label>
-                  <select className="small-select" id="raza" value={datosMascota.raza} onChange={handleChange}>
+                  <select
+                    className="small-select"
+                    name="raza"
+                    value={datosMascota.raza}
+                    onChange={manejadorInput}
+                  >
                     <option value="">Seleccione</option>
                     <option>Indeterminada</option>
                   </select>
@@ -169,7 +203,12 @@ function RegistrarMascota() {
               <div className="form-group-container">
                 <div className="form-group">
                   <label>Seleccione el Sexo de su Mascota</label>
-                  <select className='Mascota' id="sexo" value={datosMascota.sexo} onChange={handleChange}>
+                  <select
+                    className='Mascota'
+                    name="sexo"
+                    value={datosMascota.sexo}
+                    onChange={manejadorInput}
+                  >
                     <option value="">Seleccione</option>
                     <option>Macho</option>
                     <option>Hembra</option>
@@ -178,62 +217,68 @@ function RegistrarMascota() {
                 </div>
                 <div className="form-group">
                   <label>Ingrese el Color de su Mascota</label>
-                  <input type="text" placeholder="Negro" className='Mascota' id="color" value={datosMascota.color} onChange={handleChange} />
+                  <input
+                    type="text"
+                    placeholder="Negro"
+                    className='Mascota'
+                    name="color"
+                    value={datosMascota.color}
+                    onChange={manejadorInput}
+                  />
                   {errors.color && <p className="error" style={{ color: 'red' }}>{errors.color}</p>}
                 </div>
                 <div className="form-group">
                   <label>Ingrese el Tamaño de su mascota</label>
-                  <input type="text" placeholder="1.25 m" className='Mascota' id="tamaño" value={datosMascota.tamaño} onChange={handleChange} />
-                  {errors.tamaño && <p className="error" style={{ color: 'red' }}>{errors.tamaño}</p>}
+                  <input
+                    type="number"
+                    placeholder="1.25 m"
+                    className='Mascota'
+                    name="tamano"
+                    value={datosMascota.tamano}
+                    onChange={manejadorInput}
+                  />
+                  {errors.tamano && <p className="error" style={{ color: 'red' }}>{errors.tamano}</p>}
                 </div>
               </div>
               <div className="form-group-container">
                 <div className="form-group">
                   <label>Describa la Personalidad de su Mascota</label>
-                  <input type="text" placeholder="Es una mascota..." className="estado" id="personalidad" value={datosMascota.personalidad} onChange={handleChange} />
+                  <input
+                    type="text"
+                    placeholder="Feliz"
+                    className='Mascota'
+                    name="personalidad"
+                    value={datosMascota.personalidad}
+                    onChange={manejadorInput}
+                  />
                   {errors.personalidad && <p className="error" style={{ color: 'red' }}>{errors.personalidad}</p>}
                 </div>
                 <div className="form-group">
-                  <label>Describa Rasgos Distintivos de su Mascota</label>
-                  <input type="text" placeholder="Manchas blancas..." className="estado" id="rasgosDistintivos" value={datosMascota.rasgosDistintivos} onChange={handleChange} />
+                  <label>Describa los rasgos distintivos de su Mascota</label>
+                  <input
+                    type="text"
+                    placeholder="Ojo morado"
+                    className='Mascota'
+                    name="rasgosDistintivos"
+                    value={datosMascota.rasgosDistintivos}
+                    onChange={manejadorInput}
+                  />
                   {errors.rasgosDistintivos && <p className="error" style={{ color: 'red' }}>{errors.rasgosDistintivos}</p>}
                 </div>
               </div>
               <div className="form-group-container">
-                <div className="form-group photo-section">
-                  <label id="fotoMascota" value={datosMascota.fotoMascota} onChange={handleChange} type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      mt: 3, mb: 2, backgroundColor: "#754a36",
-                      color: "white"
-                    }}
-                    onClick={handleChange}>Agregar Fotografía</label>
-                  <br />
-                  <br />
-                  {mostrarFoto()}
-                  <br />
-                  <br />
+                <div className="form-group">
+                  <label>Ingrese la Foto de su Mascota</label>
                   <input
                     type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      const reader = new FileReader();
-                      reader.readAsDataURL(file);
-                      reader.onloadend = function () {
-                        const base64data = reader.result;
-                        setDatosMascota((prevMascota) => ({
-                          ...prevMascota,
-                          fotoMascota: base64data
-                        }));
-                      };
-                    }}
+                    className='Mascota'
+                    onChange={selectedImage}
                   />
                 </div>
-                <button onClick={handleSubmit} type="submit" className="submit-button">Añadir <span className="check-icon">✔</span></button>
+                {mostrarFoto()}
               </div>
             </div>
+            <button type="submit" className="guardar">Enviar</button>
           </form>
         </section>
       </div>

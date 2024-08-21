@@ -36,7 +36,7 @@ function RegistrarMascotaAbandono() {
     rasgosDistintivos: '',
     id_duenio: id,
     fotoMascota: null,
-    situacion:'',
+    situacion: '',
     estado: 'abandonado',
   });
   const handleChange = (e) => {
@@ -128,26 +128,21 @@ function RegistrarMascotaAbandono() {
       return <img src={photoUrl} alt="Imagen" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />;
     }
   };
-  
+
   const handleReportar = () => {
     navigate(`/espacio/abandonado/${id}`);
   };
   const handleReportarPerdida = () => {
     navigate(`/animal/${id}`);
   };
-  const handleClick = () => {
-    navigate(`/usuarios/${id}`); // Reemplaza '/home' con la ruta a la que quieres navegar
-  };
+  
   return (
     <div className="Container" onSubmit={handleSubmit}>
       <header>
-        <h1>ESPERANZA ANIMAL
-          <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
-        </h1>
         <div className="user-section">
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              style={{ borderRadius: '50%', width: '40px', height: '40px' }}
+              style={{ borderRadius: '50%', width: '40px', height: '40px', marginLeft:'1rem' }}
               src={`http://localhost:5000${imagenId}`}
               alt="Foto"
             />
@@ -156,6 +151,9 @@ function RegistrarMascotaAbandono() {
             </Typography>
           </div>
         </div>
+        <h1 style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>ESPERANZA ANIMAL
+          <img src={logo} className='esperanzaImg' alt="Imagen de Esperanza Animal" />
+        </h1>
       </header>
       <img src={imgPresentacion} className='presentacionImg' alt="Imagen de Presentación" />
       <hr />
@@ -164,7 +162,6 @@ function RegistrarMascotaAbandono() {
           <button className='nav-button' onClick={handleReportarPerdida}>Reportar Pérdida de mascota</button>
           <button className='nav-button' onClick={handleReportar}>Reportar Animal en Abandono</button>
           <button className='nav-button'>Administrar Registros de pérdida y de abandono</button>
-          <button className='nav-button' onClick={handleClick}>Home</button>
         </nav>
       </div>
       <hr />
@@ -285,14 +282,14 @@ function RegistrarMascotaAbandono() {
                   {mostrarFoto()}
                 </div>
                 <div className="form-group">
-                <label> <label>Seleccione la Situación Actual del Animal</label>
-                  <select className='Mascota' id="situacion" value={datosMascota.situacion} onChange={handleChange}>
-                    <option value="">Seleccione</option>
-                    <option>Grave</option>
-                    <option>Regular</option>
-                    <option>Bien</option>
-                  </select>
-                  {errors.situacion && <p className="error" style={{ color: 'red' }}>{errors.situacion}</p>}</label>
+                  <label> <label>Seleccione la Situación Actual del Animal</label>
+                    <select className='Mascota' id="situacion" value={datosMascota.situacion} onChange={handleChange}>
+                      <option value="">Seleccione</option>
+                      <option>Grave</option>
+                      <option>Regular</option>
+                      <option>Bien</option>
+                    </select>
+                    {errors.situacion && <p className="error" style={{ color: 'red' }}>{errors.situacion}</p>}</label>
                 </div>
               </div>
             </div>

@@ -1,53 +1,91 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/sequelize.config');
+const User = require('../models/user.model')
+//Requiere el modelo
 
-const mascotaSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true
-    },
+//Crear un modelo SIN EL ESQUEMA
+const Mascota = sequelize.define('Mascota', {
     nombre: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: " Nombre es requerido" }
+        }
     },
     tipo: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+        notNull: { msg: "Tipo es requerido"}
+        }
     },
     raza: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Raza es requerida" }
+        }
     },
     sexo: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Sexo es requerido" }
+        }
     },
     color: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Color es requerido" }
+        }
     },
-    tamaño: {
-        type: String,
-        required: true
+    tamano: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Tamaño es requerido" },
+        }
     },
     personalidad: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Personalidad es requerida" }
+        }
     },
     rasgosDistintivos: {
-        type: String,
-        required: true
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Rasgos Distintivos es requerido" }
+        }
     },
-    id_duenio: {
-        type: String,
-        required: true
+    fotoMascotaUs: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notNull: { msg: "Foto de Mascota es requerida" }
+        }
     },
-    fotoMascota: {
-        type: String,
-        required: true
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User, // Nombre del modelo Usuario
+            key: 'id' // Clave primaria a la que se referencia
+        },
+        allowNull: false,
+        validate: {
+            notNull: { msg: "El campo usuario es requerido" }
+        }
     }
-});
+},
 
-const Mascota = mongoose.model('Mascota', mascotaSchema);
+{
+    timestamps: false,
+    freezeTableName:true
+}
 
+
+);
 module.exports = Mascota;

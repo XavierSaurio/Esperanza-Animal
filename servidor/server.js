@@ -25,6 +25,15 @@ const disktorage = multer.diskStorage({
         cb(null,Date.now()+'-' + file.originalname)
     } 
 })
+
+//Mascota - Usuario
+const disktorage3 = multer.diskStorage({
+    
+    destination: path.join(__dirname, '../imagenes'),
+    filename: (req, file, cb) =>{
+        cb(null,Date.now()+'-' + file.originalname)
+    } 
+})
 ///mascota
 const disktorage2 = multer.diskStorage({
     
@@ -38,13 +47,26 @@ const fileupload = multer({
     storage: disktorage
 }).single('fotoPerfil')
 
+//Para registrar la imagen de una MASCOTA 
+const fileupload3 = multer({
+    storage: disktorage3
+}).single('fotoMascotaUs')
+
+
 //Para registrar la mascota 
 const fileupload2 = multer({
     storage: disktorage2
 }).single('fotoMascota')
 
+//Usar rutas con USUARIOS
 const allUserRoutes = require('../servidor/routes/user.routes');
-allUserRoutes(app, fileupload, fileupload2);
+allUserRoutes(app, fileupload, fileupload2,fileupload3);
+
+//Usar rutas con MASCOTAS
+//const allMascotaRoutes = require('../servidor/routes/mascota.routes');
+//allMascotaRoutes(app, fileupload3);
+
+
 //Esuchando el puerto
 app.listen(port, () => {
     console.log('La aplicacion esta en linea en el puerto', port)
@@ -56,6 +78,7 @@ app.listen(port, () => {
 //PETICION OBTENER TODOS LOS USUARIOS
 app.get('/usuarios', function (req, res) {
     res.json(users);
+
 })
 //PETICION GET CON UN PARAMETRO ESPECIFICO
 app.get('/usuarios/:id', function (req, res) {
@@ -70,6 +93,35 @@ app.get('/usuarios/:id', function (req, res) {
 })
 //PETICION POST
 app.post('/usuarios/new', fileupload, async (req, res) => {
+    console.log(req.body);
+    users.push(req.body);
+    if(users){
+        res.json({ status: "Añadido" })
+    }else{
+        res.status(404).json({ error: 'Usuario no creado' });
+    }
+});
+
+//ENDPOINTS PARA MASCOTAS
+
+//PETICION OBTENER TODOS LOS USUARIOS
+app.get('/mascotas', function (req, res) {
+    res.json(users);
+
+})
+//PETICION GET CON UN PARAMETRO ESPECIFICO
+app.get('/mascotas/:id', function (req, res) {
+
+    const userId = req.params.id;
+    const user = users.find(user => user.id === userId);
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+})
+//PETICION POST
+app.post('/mascotas/new', fileupload3, async (req, res) => {
     console.log(req.body);
     users.push(req.body);
     if(users){
